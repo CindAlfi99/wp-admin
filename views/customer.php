@@ -31,7 +31,7 @@ if(isset($_POST['tambah'])){
 ?>
 
 
-<div class="container">
+<div class="container scroll">
 <!-- search -->
 <div class="row">
 <div class="col-md-5">

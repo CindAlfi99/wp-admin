@@ -1,7 +1,7 @@
 <?php require 'template/header.php';
 $query = mysqli_query($connection, "SELECT * FROM order_masuk");
 ?>
-<div class="container">
+<div class="container scroll">
 
   <div class="row">
     <div class="col-md-5 mb-3">

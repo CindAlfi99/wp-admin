@@ -19,7 +19,16 @@ $count;
     <meta name="author" content="">
 
     <title>Dashboard</title>
-
+<style>
+.scroll{
+    margin: 4px, 4px;
+                padding: 4px;
+            
+                width: 300px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                white-space: nowrap;
+}</style>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

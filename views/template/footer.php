@@ -53,6 +53,34 @@ $('.modal-body #tgl_selesai').val(selesai);
 
     })
     </script>
+     <script>
+    $(document).on('click','#tombolDetail', function(){
+let resi = $(this).data('resi');
+let nama = $(this).data('nama');
+let wa = $(this).data('wa');
+let alamat = $(this).data('alamat');
+let layanan = $(this).data('layanan');
+let item = $(this).data('item');
+let jumlah = $(this).data('jumlah');
+let satuan = $(this).data('satuan');
+let pesan = $(this).data('pesan');
+let selesai = $(this).data('selesai');
+
+$('.modal-body #no_resi').val(resi);
+$('.modal-body #nama_pemesan').val(nama);
+$('.modal-body #no_wa').val(wa);
+$('.modal-body #alamat_jemput').val(alamat);
+$('.modal-body #jenis_layanan').val(layanan);
+$('.modal-body #jenis_item').val(item);
+$('.modal-body #jumlah').val(jumlah);
+$('.modal-body #satuan').val(satuan);
+$('.modal-body #tgl_pesan').val(pesan);
+$('.modal-body #tgl_selesai').val(selesai);
+
+
+
+    })
+    </script>
 
 
 
