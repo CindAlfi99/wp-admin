@@ -25,7 +25,12 @@ $html = '
 <body>
 <center> <h1>Laporan Rumah Laundry Seluruh Data</h1></center>
 <br>
-<table  cellpadding="7" cellspacing="0">
+Dicetak :'.date('l, d-m-Y');
+if(mysqli_num_rows($perintahQuery) > 1){
+  $html.='<p>Laporan Semua Data Konsumen</p>';
+
+}
+$html.='<table  cellpadding="7" cellspacing="0">
 <tr>
 <th>No</th>
 <th>No Resi</th>

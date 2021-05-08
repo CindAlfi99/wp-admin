@@ -37,6 +37,8 @@ let wa = $(this).data('wa');
 let alamat = $(this).data('alamat');
 let layanan = $(this).data('layanan');
 let item = $(this).data('item');
+let jumlah = $(this).data('jumlah');
+
 let pesan = $(this).data('pesan');
 let selesai = $(this).data('selesai');
 
@@ -46,6 +48,8 @@ $('.modal-body #no_wa').val(wa);
 $('.modal-body #alamat_jemput').val(alamat);
 $('.modal-body #jenis_layanan').val(layanan);
 $('.modal-body #jenis_item').val(item);
+$('.modal-body #jumlah').val(jumlah);
+
 $('.modal-body #tgl_pesan').val(pesan);
 $('.modal-body #tgl_selesai').val(selesai);
 

@@ -34,14 +34,14 @@ $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
     </form>
     </div>
 <div class="row">
-<a href="cetak_laporan_all.php" class=" ml-3 mb-2  d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Cetak</a>
+<?php if(!isset($_POST['filter_date'])):?>
+<a href="cetak_laporan_all.php" class=" ml-3 mb-2  d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak</a>
+ <?php endif;?>
 <?php if(isset($_POST['filter_date'])):
   $form_date = $_POST['form_date'];
   $to_date = $_POST['to_date'];?>
-<a href="cetak_laporan.php?tanggal_pesan=<?=$form_date?>&to_date=<?=$to_date?>" class=" ml-3 mb-2  d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i>Cetak</a>
-                                <?php endif;?>
+<a href="cetak_laporan.php?tanggal_pesan=<?=$form_date?>&to_date=<?=$to_date?>" class=" ml-3 mb-2  d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak</a>
+ <?php endif;?>
 <table class="table table-striped text-center">
           <thead>
             <tr>

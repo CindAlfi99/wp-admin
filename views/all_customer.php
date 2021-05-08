@@ -1,18 +1,18 @@
 <?php require 'template/header.php';
 require 'functions.php';
 // data hari ini
-$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE()");
+$query = mysqli_query($connection, "SELECT * FROM order_masuk ");
 //data di layanan
 $data = mysqli_query($connection,"SELECT * FROM layanan");
 // data update
 if(isset($_POST['ubah'])){
   if(ubahProduk($_POST) > 0){
     echo "<script> alert('Data berhasil diubah');
-    document.location.href ='customer.php'; </script>";
+    document.location.href ='all_customer.php'; </script>";
   }else{
 
     echo "<script> alert('Data gagal diubah!');
-    document.location.href ='customer.php'; </script>";
+    document.location.href ='all_customer.php'; </script>";
  
   }
 }
@@ -56,9 +56,8 @@ if(isset($_POST['tambah'])){
       <th scope="col">Alamat</th>
       <th scope="col">Jenis Layanan</th>
       <th scope="col">Jenis Item</th>
-      <th scope="col">Jumlah</th>
-   
       <th scope="col">Tanggal Pesan</th>
+      <th scope="col">Jumlah</th>
       <th scope="col">Tanggal Selesai</th>
       <th scope="col">Opsi</th>
     </tr>
@@ -76,10 +75,9 @@ if(isset($_POST['tambah'])){
       <th><?=$row['jenis_layanan'];?></th>
       <td><?=$row['jenis_item'];?></td>
       <td><?=$row['jumlah'];?></td>
-  
       <td><?=$row['tanggal_pesan'];?></td>
       <td><?=$row['tanggal_selesai'];?></td>
-      <th><a type="submit" class="btn btn-primary" id="tombolUbah"data-id="<?= $row['id']?>" data-nama="<?= $row['nama_pemesan']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-jumlah="<?= $row['jumlah']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
+      <th><a type="submit" class="btn btn-primary" id="tombolUbah"data-id="<?= $row['id']?>"data-jumlah="<?= $row['jumlah']?>" data-nama="<?= $row['nama_pemesan']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
       <a class="btn btn-primary" href="hapus.php?id=<?= $row['id'];?>" onclick="return confirm('Confirm');">Hapus</a>
       </th>
       <?php endforeach;?>
@@ -132,7 +130,6 @@ if(isset($_POST['tambah'])){
     <label for="jenis_item">Jumlah</label>
     <input type="number" class="form-control" name="jumlah" id="jumlah" aria-describedby="emailHelp">
   </div>
- 
   <div class="form-group">
     <label for="tgl_pesan">Tanggal Pesan</label>
     <input type="text" class="form-control" name="tgl_pesan" id="tgl_pesan" aria-describedby="emailHelp">
@@ -194,7 +191,9 @@ if(isset($_POST['tambah'])){
   <div class="form-group">
     <label for="jenis_item">Jenis Item</label>
       <select class="form-control" id="jenis_item" name="jenis_item">
-
+      <?php while($row= mysqli_fetch_assoc($data)):?>
+       <option value="<?= $row['jenis_item'];?>"><?= $row['jenis_item'];?></option>
+       <?php endwhile;?>
    </select>
  
   </div>

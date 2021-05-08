@@ -94,11 +94,28 @@ $count;
            
 
             <!-- Nav Item - Customer -->
+
             <li class="nav-item active">
+                <a class="nav-link collapsed" href="customer.php" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-users"></i>
+                    <span>Customer</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Select Menu</h6>
+                        <a class="collapse-item" href="customer.php">Customer Today</a>
+                        <a class="collapse-item" href="all_customer.php">Customer Get All</a>
+                    </div>
+                </div>
+            </li>
+            <!-- <li class="nav-item active">
                 <a class="nav-link" href="customer.php">
                 <i class="fas fa-users"></i>
                     <span>Customer</span></a>
-            </li>
+                    
+            </li> -->
            
             <!-- Nav Item - Order -->
             <li class="nav-item active">

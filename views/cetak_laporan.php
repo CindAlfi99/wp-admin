@@ -26,6 +26,19 @@ $html = '
 <body>
 <center> <h1>Laporan Rumah Laundry</h1></center>
 <br>
+Dicetak :'.date('l, d-m-Y');
+if(mysqli_num_rows($perintahQuery) < 7){
+  $html.='<p>Laporan Harian</p>
+  <p>Dari tanggal '.$form_date.' sampai '.$to_date.'</p>';
+
+}elseif (mysqli_num_rows($perintahQuery) >= 7 && mysqli_num_rows($perintahQuery) < 30) {
+  $html.='<p>Laporan Mingguan</p>
+  <p>Dari tanggal '.$form_date.' sampai '.$to_date.'</p>';
+
+}elseif(mysqli_num_rows($perintahQuery) >=30){
+  $html.='<p>Laporan Bulanan</p><p>Dari tanggal '.$form_date.' sampai '.$to_date.'</p>';
+}
+$html.='
 <table  cellpadding="7" cellspacing="0">
 <tr>
 <th>No</th>
