@@ -46,7 +46,7 @@ if(isset($_POST['tambah'])){
   Tambah data
 </button></div></div>
 <div class="row">
-<h5 class="ml-3 mb-3">Daftar Layanan Rumah Laundry 381</h5>
+<h5 class="ml-3 mb-3 mt-4"><b>Daftar Layanan Rumah Laundry 381</b></h5>
 <div class="col-md-12">
 <div class="containe" id="containe">
 <table class="table table-striped text-center">

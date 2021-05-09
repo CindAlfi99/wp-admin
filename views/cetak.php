@@ -2,8 +2,9 @@
 $no_resi = $_GET['no_resi'];
 require '../asset/vendor_pdf/vendor/autoload.php';
 require '../config/DB.php';
-$perintahQuery = mysqli_query($connection,"SELECT order_masuk.id,order_masuk.alamat_jemput,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jenis_item, order_masuk.jumlah,order_masuk.tanggal_pesan, order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.no_resi = $no_resi ");
-$join_tbl = mysqli_fetch_assoc($perintahQuery);
+$query =  mysqli_query($connection, "SELECT DISTINCT no_resi, alamat_jemput,nama_pemesan,tanggal_pesan,tanggal_selesai FROM order_masuk WHERE no_resi = $no_resi");
+$perintahQuery = mysqli_query($connection,"SELECT order_masuk.id, order_masuk.jenis_layanan, order_masuk.jenis_item, order_masuk.jumlah,order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.no_resi = $no_resi ");
+$join_tbl = mysqli_fetch_assoc($query);
 
 
 
@@ -26,17 +27,14 @@ $html = '
   <title>Document</title>
   
   <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css"/> 
-  
+ 
   <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css"/>
-  <style>
-  table, td,th{
-    border: 1px solid black;
-  }
-  </style>
+
 </head>
 
 
-<body>
+<body >
+
 <h4 class="text-center">Nota RL381</h4>
 <p>Jl. MayorZein</p>
 =============================================================
@@ -53,14 +51,27 @@ $html.=
     ============================================================<br>';
    
     $count =0;
+   $ongkir = 0;
     
     
     while($row = mysqli_fetch_assoc($perintahQuery)){
-      $total = $row['harga'] * $row['jumlah'] + $row['ongkir'];
+      $total = $row['harga'] * $row['jumlah'];
   $count += $total;
     $html.= 'Layanan :'. $row["jenis_layanan"].'<br> Jenis : '.$row['jenis_item'].'<br>
-    Harga : '. $row["harga"].' x Jumlah :'. $row["jumlah"].''. $row["satuan"].'<br> Ongkir :'. $row["ongkir"].'<br>';
+    Harga : '. $row["harga"].' x Jumlah :'. $row["jumlah"].''. $row["satuan"].'<br>';
+  $ongkir += $row['ongkir'];
     };
+    
+    if($ongkir > 10000){
+      $ongkir = $ongkir - 5000;
+      $count += $ongkir;
+      $html .=' Ongkir :'. $ongkir.'<br>';
+    }elseif($ongkir == 10000){
+      $count += 10000;
+      $ong = 10000;
+    $html .=' Ongkir :'.$ong.'<br>';
+    }
+  
     $html.='=============================================================<br>
    Total Bayar :'. $count.'
    =============================================================<br>
@@ -69,7 +80,6 @@ $html.=
   
  
   $html .='
-
 
 </body>
 </html>

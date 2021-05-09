@@ -12,7 +12,7 @@ if(isset($_POST['filter_date'])){
 $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
 
  ?>
-<h1>Laporan</h1>
+<h1><b>Laporan RL381</b></h1>
 
 
 <div class="container scroll">
@@ -20,22 +20,27 @@ $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
 <form action="" method="post">
 
 <div class="form-row">
-    <div class="form-group col-md-3">
-      <label for="dari"><<span>Pilih Tanggal</span>/label>
+   <div class="row">
+   <div class="col-5">
+      <label for="dari"><span>Pilih Tanggal</span></label>
       <input type="date" name="form_date" class="form-control" id="dari" placeholder="Dari tanggal">
+   </div>
+   <div class="col-5">
+      <label for="ke">Sampai Tanggal</label>
+      <input type="date" name="to_date" class="form-control float-right" id="ke" placeholder="Sampai tanggal">
+      </div>
+      <div class="col-2"><button type="submit" name="filter_date" style="margin-top:32px"class="btn btn-primary">Cari</button></div>
+     </div>
+    
     </div>
-    <div class="form-row">
-    <div class="form-group col-md-12">
-      <label for="ke"></label>
-      <input type="date" name="to_date" class="form-control" id="ke" placeholder="Sampai tanggal">
-     
-    </div>
-    <button type="submit" name="filter_date" class="btn btn-primary">cari</button>
+
     </form>
     </div>
 <div class="row">
+<!-- tombol hari ini -->
+<button href="cetak_laporan_today.php" class="col-6 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak Laporan Hari Ini</button>
 <?php if(!isset($_POST['filter_date'])):?>
-<a href="cetak_laporan_all.php" class=" ml-3 mb-2  d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak</a>
+<a href="cetak_laporan_all.php" class=" ml-3 mb-2  d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak Semua Laporan</a>
  <?php endif;?>
 <?php if(isset($_POST['filter_date'])):
   $form_date = $_POST['form_date'];

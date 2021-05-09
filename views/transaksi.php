@@ -77,7 +77,7 @@ $total = $row['harga'] * $row['jumlah'] + $row['ongkir'];?>
 <!-- transaksi -->
 <p class="text-end float-right mr-5"><strong>Jumlah</strong>: <?= $count; ?></p>
 
-  <a href="cetak.php?no_resi=<?= $q['no_resi'] ?>&status=lunas" class="btn btn-info mb-2 col-md-2 ml-3">Cetak</a>
+  <a href="cetak_payments.php?no_resi=<?= $q['no_resi'] ?>&status=lunas" class="btn btn-info mb-2 col-md-2 ml-3">Cetak</a>
   
  
   
