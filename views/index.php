@@ -1,21 +1,36 @@
 <?php
-// require '../config/DB.php';
+require '../config/DB.php';
+require '../config/base_url.php';
+session_start();
+
+$connection = mysqli_connect('localhost','root','','rumahlaundry381');
+
+ 
+   
+  
+if(isset($_POST['submit'])){
+    $nama =$_POST['email'];
+    $adm = mysqli_query($connection,"SELECT * FROM users WHERE nama = '$nama' AND role='admin'");
+    $owner = mysqli_query($connection,"SELECT * FROM users WHERE nama = '$nama' AND role='owner'");
+if(mysqli_num_rows($adm) > 0){
+   $_SESSION['role'] = 'admin';
+   $_SESSION['nama'] = "$nama";
+
+    header("Location: admin.php");
+}else if(mysqli_num_rows($owner) > 0){
+    $_SESSION['role'] = 'owner';
+    $_SESSION['nama'] = "$nama";
+    
+    header("Location: admin.php");
+    
+}
+else{
+    $error = true;
+    
+  }
+}
 
 
-// $connection = mysqli_connect('localhost','root','','rumahlaundry381');
-//  if(isset($_POST['submit'])){
-//      var_dump($_POST['submit']);
-//      exit;
-//     $nama =$_POST['email'];
-//  $query = mysqli_query($connection,"SELECT * FROM users WHERE nama = '$nama'");
-// if(mysqli_num_rows($query) > 0){
-//     header("Location: admin.php");
-// }
-// else{
-//     $error = mysqli_error($db);
-//     header("Location: index.php");
-//   }
-//  }
      ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +56,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 
     <div class="container">
 
@@ -58,12 +73,15 @@
                             <div class="col-lg">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back Admin!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4 "><b>Welcome Admin RL381</b></h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <img width="150" height="60" src="<?= ROOT;?>asset/img/logo.jpg" alt="">
                                     </div>
                                     <?php if(isset($error)) : ?>
-    <p style="color:red; font-style:italic;">username/password salah</p>
+    <p style="color:red; font-style:italic;">Username/Password salah</p>
     <?php endif; ?>
-                                    <form method="post" action="admin.php">
+                                    <form method="post" action="">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" 

@@ -1,6 +1,6 @@
 
 </body>
-<footer class="sticky-footer bg-light bottom">
+<footer class="sticky-footer bg-white bottom">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Rumah Laundry 381 2021</span>
@@ -29,6 +29,17 @@
     
     <!-- <script src="ajax/customer.js"></script> -->
     <script src="ajax/ajax.js"></script>
+   <script> 
+
+if (HelpCenter.user.role=="user"){
+ $("div.user").show();
+}
+
+if (HelpCenter.user.role=="owner"){
+ $("div.owner").show();
+}
+
+</script>
     <script>
     $(document).on('click','#tombolUbah', function(){
 let id = $(this).data('id');

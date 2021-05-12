@@ -1,5 +1,6 @@
 <?php require 'template/header.php';
 require 'functions.php';
+
 $query = mysqli_query($connection, "SELECT * FROM order_masuk");
 
 if(isset($_POST['filter_date'])){
@@ -12,6 +13,7 @@ if(isset($_POST['filter_date'])){
 $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
 
  ?>
+ 
 <h1><b>Laporan RL381</b></h1>
 
 
@@ -36,18 +38,18 @@ $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
 
     </form>
     </div>
-<div class="row">
+<div class="row mt-2">
 <!-- tombol hari ini -->
-<button href="cetak_laporan_today.php" class="col-6 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak Laporan Hari Ini</button>
+<button href="cetak_laporan_today.php" class="col-5  d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-30"></i>Cetak Hari Ini</button>
 <?php if(!isset($_POST['filter_date'])):?>
-<a href="cetak_laporan_all.php" class=" ml-3 mb-2  d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak Semua Laporan</a>
+<a href="cetak_laporan_all.php" class=" ml-2 col-5 d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-30"></i>Cetak Semua </a>
  <?php endif;?>
 <?php if(isset($_POST['filter_date'])):
   $form_date = $_POST['form_date'];
   $to_date = $_POST['to_date'];?>
 <a href="cetak_laporan.php?tanggal_pesan=<?=$form_date?>&to_date=<?=$to_date?>" class=" ml-3 mb-2  d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak</a>
  <?php endif;?>
-<table class="table table-striped text-center">
+<table class="table table-striped text-center mt-4">
           <thead>
             <tr>
               <th scope="col">No</th>

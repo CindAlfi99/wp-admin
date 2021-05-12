@@ -1,4 +1,6 @@
+
 <?php require 'template/header.php';
+
 $query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE()");
 $count = mysqli_num_rows($query); 
 $count;
@@ -6,14 +8,27 @@ $count;
   ?>
   <!-- menu -->
                 <div class="container-fluid">
-
+                
                     <!-- header -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
+                        
+                      
 
+                                        
+                       <!-- batas -->
+                      <?php if($_SESSION['role']==='owner'):?> 
+                      <a href="<?= BASE_URL?>admin.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <!-- <i class="fas fa-download fa-sm text-white-50"></i> !-->
+                       Beralih ke Halaman Admin</a>
+                       <?php elseif($_SESSION['role']==='admin'):?>
+                       
+                        <a href="<?= BASE_URL?>admin.php?<?=$_SESSION['role']='owner'?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Beralih ke Halaman Owner</a>
+                        
+                        <?php endif; ?>
+                       
+                    </div>
+                    
                     <!-- Content Row -->
                     <div class="row">
 
@@ -93,10 +108,12 @@ $count;
 <!-- batas -->
 
             </div>
+          
             
          
          
         
-
+            
             <!-- Footer -->
             <?php require 'template/footer.php';?>
+            

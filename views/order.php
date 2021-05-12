@@ -1,6 +1,7 @@
 <?php require 'template/header.php';
 $query = mysqli_query($connection, "SELECT * FROM order_masuk");
 ?>
+
 <div class="container scroll">
 
   <div class="row">
@@ -14,7 +15,7 @@ $query = mysqli_query($connection, "SELECT * FROM order_masuk");
     <h5 class="ml-3">Data Order</h5>
     <div class="col-md-12">
       <div id="container">
-        <table class="table table-striped text-center">
+        <table class="table table-striped text-center table-hover">
           <thead>
             <tr>
               <th scope="col">No</th>
@@ -23,8 +24,8 @@ $query = mysqli_query($connection, "SELECT * FROM order_masuk");
               <th scope="col">Nama Pelanggan</th>
               <th scope="col">Total Pembayaran</th>
               <th scope="col">Tanggal Selesai</th>
+              <th scope="col">Status</th>
               <th scope="col">Proses</th>
-              <th scope="col">Opsi</th>
             </tr>
           </thead>
           <tbody>

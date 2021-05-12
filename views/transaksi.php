@@ -1,13 +1,17 @@
 <?php require 'template/header.php';
-$no_resi = $_GET['no_resi']; ?>
-<?php $query = mysqli_query($connection, "SELECT order_masuk.id,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jumlah,order_masuk.tanggal_pesan, order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.status ='selesai' AND order_masuk.no_resi =$no_resi");
-$querys = mysqli_query($connection, "SELECT order_masuk.id,order_masuk.no_resi, order_masuk.nama_pemesan,order_masuk.tanggal_selesai,order_masuk.alamat_jemput, order_masuk.jenis_layanan, order_masuk.jumlah, order_masuk.no_wa, order_masuk.tanggal_pesan, order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.status ='selesai' AND order_masuk.no_resi =$no_resi");
-$q = mysqli_fetch_assoc($querys);
+$no_resi = $_GET['no_resi'];
+
+
+ 
 
 ?>
 <div class="container ml-4" style="margin-bottom:150px">
 
 
+<?php if(isset($no_resi)): 
+  $query = mysqli_query($connection, "SELECT order_masuk.id,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jumlah,order_masuk.tanggal_pesan, order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.status ='selesai' AND order_masuk.no_resi =$no_resi");
+  $querys = mysqli_query($connection, "SELECT order_masuk.id,order_masuk.no_resi, order_masuk.nama_pemesan,order_masuk.tanggal_selesai,order_masuk.alamat_jemput, order_masuk.jenis_layanan, order_masuk.jumlah, order_masuk.no_wa, order_masuk.tanggal_pesan, order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.status ='selesai' AND order_masuk.no_resi =$no_resi");
+  $q = mysqli_fetch_assoc($querys);?>
 <div class="row">
       <div class="col-6">
         <p>No : <?= $q['no_resi']; ?></p>
@@ -33,7 +37,7 @@ $q = mysqli_fetch_assoc($querys);
     <div class="col-md-11 scroll">
 
 
-<h5>List Data Hitung Transaksi </h5>
+<h5>List Data Transaksi </h5>
 <table class="table text-center">
   <thead>
     <tr>
@@ -90,7 +94,9 @@ $total = $row['harga'] * $row['jumlah'] + $row['ongkir'];?>
   
   
 </form>
-
+<?php  elseif(!isset($no_resi)):?>
+<p>Tidak ada Transaksi</p>
+<?php  endif?>
 </div>
 
  <?php require 'template/footer.php';?>
