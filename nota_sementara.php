@@ -1,22 +1,12 @@
 <?php
 $no_resi = $_GET['no_resi'];
-require '../asset/vendor_pdf/vendor/autoload.php';
-require '../config/DB.php';
-$query =  mysqli_query($connection, "SELECT DISTINCT no_resi, alamat_jemput,nama_pemesan,tanggal_pesan,tanggal_selesai FROM order_masuk WHERE no_resi = $no_resi");
-$perintahQuery = mysqli_query($connection,"SELECT order_masuk.id, order_masuk.jenis_layanan, order_masuk.jenis_item, order_masuk.jumlah,order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.no_resi = $no_resi ");
+require 'asset/vendor_pdf/vendor/autoload.php';
+require 'config/DB.php';
+$query =  mysqli_query($connection, "SELECT DISTINCT alamat_jemput, nama_pemesan,no_wa,tanggal_pesan,tanggal_selesai FROM order_masuk WHERE no_resi = $no_resi");
+$perintahQuerys = mysqli_query($connection, "SELECT order_masuk.jenis_layanan, order_masuk.jenis_item, order_masuk.jumlah,layanan.jenis_item, layanan.satuan, FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.no_resi = $no_resi");
 $join_tbl = mysqli_fetch_assoc($query);
 
-
-
-
-$status = $_GET['status'];
-if(isset($status)){
-    $query =mysqli_query($connection, "UPDATE order_masuk SET status='$status' WHERE no_resi=$no_resi");
-    if(!$query ) {
-        die('Invalid query: ' . mysqli_error($connection));
-    }
-    
-}?>
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -27,7 +17,7 @@ if(isset($status)){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <title>Hello, world!</title>
+    <title>Cetak Nota Proses</title>
     <style>body{
     margin-top:20px;
     color: #484b51;
@@ -199,11 +189,11 @@ hr {
                     <div class="col-sm-6">
                         <div>
                             <span class="text-sm text-grey-m2 align-middle">Nama Pemesan</span>
-                            <span class="text-600 text-110 text-blue align-middle"><?=$join_tbl["no_resi"]?></span>
+                            <span class="text-600 text-110 text-blue align-middle"><?=$join_tbl["nama_pemesan"]?></span>
                         </div>
                         <div class="text-grey-m2">
                             <div class="my-1">
-                                No Resi : <?= $join_tbl["no_resi"]?>
+                                No WA : <?= $join_tbl["no_wa"]?>
                             </div>
                             <div class="my-1">
                             Alamat : <?= $join_tbl["alamat_jemput"]?>
@@ -217,11 +207,10 @@ hr {
                         <hr class="d-sm-none" />
                         <div class="text-grey-m2">
 
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Tanggal Pesan</span> <?= $join_tbl["tanggal_pesan"]?></div>
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Tanggal Pesan :</span> <?= $join_tbl["tanggal_pesan"]?></div>
 
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Tanggal Selesai</span> <?= $join_tbl["tanggal_selesai"]?></div>
-
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge badge-warning badge-pill px-25">Belum Lunas</span></div>
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Tanggal Selesai :</span> <?= $join_tbl["tanggal_selesai"]?></div>
+                            
                         </div>
                     </div>
                     <!-- /.col -->
@@ -229,27 +218,28 @@ hr {
 
                 <div class="mt-4">
                     <div class="row text-600 text-white bgc-default-tp1 py-25">
-                        <div class="d-none d-sm-block col-1">No</div>
-                        <div class="col-9 col-sm-5">Jenis Item</div>
-                        <div class="d-none d-sm-block col-4 col-sm-2">Jumlah</div>
-                        <div class="d-none d-sm-block col-sm-2">Harga</div>
-                        <div class="col-2">Total Bayar</div>
+                    <div class="d-none d-sm-block col-1">No</div>
+                        <div class="col-9 col-sm-5">Jenis Layanan</div>
+                        <div class="d-none d-sm-block col-4 col-sm-2">Jenis Item</div>
+                        
+                        <div class="d-none d-sm-block col-sm-2">Jumlah</div>
+                        
+                    
+                       
                     </div>
 
                     <div class="text-95 text-secondary-d3">
                         <div class="row mb-2 mb-sm-0 py-25">
-                        <?php  $count =0; 
-                        $ongkir = 0;
+                        <?php  
                         $i=1;
-                        while($row = mysqli_fetch_assoc($perintahQuery)):
-                            $total = $row['harga'] * $row['jumlah'];
-                            $count += $total; ?>
-                            <div class="d-none d-sm-block col-1"><?= $i++;?></div>
-                            <div class="col-9 col-sm-5"><?= $row["jenis_item"]?></div>
-                            <div class="d-none d-sm-block col-2"><?= $row["jumlah"]?></div>
-                            <div class="d-none d-sm-block col-2 text-95"><?= $row["harga"]?></div>
-                            <div class="col-2 text-secondary-d2"><?= $total;?></div>
-                            <?php $ongkir += $row['ongkir'];?>
+                        while($row = mysqli_fetch_assoc($perintahQuerys)): ?>
+                          <div class="d-none d-sm-block col-1"><?= $i++;?></div>
+                            <div class="col-9 col-sm-5"><?= $row["jenis_layanan"]?></div>
+                           
+                            <div class="d-none d-sm-block col-2 text-95"><?= $row["jenis_item"]?></div>
+                            <div class="d-none d-sm-block col-2"><?= $row["jumlah"]?> <?= $row["satuan"]?></div>
+                           
+                            
 <?php endwhile;?>
                         </div>
                     </div>
@@ -263,46 +253,31 @@ hr {
                         <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
                             <div class="row my-2">
                                 <div class="col-7 text-right">
-                                    Ongkir
+                                    <!-- Ongkir -->
                                 </div>
                                 <div class="col-5">
-                                <?php  if($ongkir > 10000):?>
-                                 <?php  $ongkir = $ongkir - 5000;
-                                  $count += $ongkir;?>
-                                    <span class="text-120 text-secondary-d1"><?= $ongkir;?></span>
-                                    <?php elseif($ongkir == 10000):?>
-                                            <?php $count += 10000;
-                                             $ong = 10000;?>
-                                             <span class="text-120 text-secondary-d1"><?= $ong;?></span>
-                                             <?php endif;?>
+
+                                   
                                 </div>
                             </div>
 
                             <div class="row my-2">
                                 <div class="col-7 text-right">
-                                  Total Bayar
+                                  <!-- Total Bayar -->
                                 </div>
                                 <div class="col-5">
-                                    <span class="text-110 text-secondary-d1"><?= $count;?></span>
+                                   
                                 </div>
                             </div>
 
-                            <!-- <div class="row my-2 align-items-center bgc-primary-l3 p-2">
-                                <div class="col-7 text-right">
-                                    Total Amount
-                                </div>
-                                <div class="col-5">
-                                    <span class="text-150 text-success-d3 opacity-2">$2,475</span>
-                                </div>
-                            </div> -->
+                          
                         </div>
                     </div>
 
                     <hr />
 
                     <div>
-                    <span class="text-secondary-d1 text-105"><?=date('Y-m-d H:i:s')?></span><br>
-                        <span class="text-secondary-d1 text-105">Terimakasih</span>
+                    <span class="text-secondary-d1 text-105"><?=date('Y-m-d H:i:s')?></span>
                         <!-- <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pay Now</a> -->
                     </div>
                 </div>
@@ -310,6 +285,8 @@ hr {
         </div>
     </div>
 </div>
+<!-- button kembali -->
+<a href="admin.php" class="btn btn-primary mt-3 col-1 float-right mr-5">Kembali</a>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

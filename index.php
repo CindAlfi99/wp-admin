@@ -1,6 +1,6 @@
 <?php
-require '../config/DB.php';
-require '../config/base_url.php';
+require 'config/DB.php';
+require 'config/base_url.php';
 session_start();
 
 $connection = mysqli_connect('localhost','root','','rumahlaundry381');
@@ -21,7 +21,7 @@ if(mysqli_num_rows($adm) > 0){
     $_SESSION['role'] = 'owner';
     $_SESSION['nama'] = "$nama";
     
-    header("Location: admin.php");
+    header("Location: owner.php");
     
 }
 else{

@@ -17,17 +17,17 @@ if(isset($_POST['ubah'])){
   }
 }
 
-if(isset($_POST['tambah'])){
-  if(tambahProduk($_POST) > 0){
-    echo "<script> alert('Data berhasil diubah');
-    document.location.href ='customer.php'; </script>";
-  }else{
+// if(isset($_POST['tambah'])){
+//   if(tambahProduk($_POST) > 0){
+//     echo "<script> alert('Data berhasil diubah');
+//     document.location.href ='customer.php'; </script>";
+//   }else{
 
-    echo "<script> alert('Data gagal diubah!');
-    document.location.href ='customer.php'; </script>";
+//     echo "<script> alert('Data gagal diubah!');
+//     document.location.href ='customer.php'; </script>";
  
-  }
-}
+//   }
+// }
 ?>
 
 
@@ -39,10 +39,10 @@ if(isset($_POST['tambah'])){
     <input type="text" class="form-control" id="cari" placeholder="cari" autofocus autocomplete="off">
   </div>
 </div></div>
-<!-- <div class="row">
+<div class="row">
 <div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
   Tambah data
-</button></div></div> -->
+</button></div></div>
 <div class="row">
 <h5 class="ml-3 mb-3">Data Konsumen Hari Ini</h5>
 <div class="col-md-12">
@@ -79,8 +79,9 @@ if(isset($_POST['tambah'])){
   
       <td><?=$row['tanggal_pesan'];?></td>
       <td><?=$row['tanggal_selesai'];?></td>
-      <th><a type="submit" class="btn btn-primary" id="tombolUbah"data-id="<?= $row['id']?>" data-nama="<?= $row['nama_pemesan']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-jumlah="<?= $row['jumlah']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
-      <a class="btn btn-primary" href="hapus.php?id=<?= $row['id'];?>" onclick="return confirm('Confirm');">Hapus</a>
+      <th><a type="submit" class="btn btn-primary" id="tombolUbah"data-id="<?= $row['id_order']?>" data-nama="<?= $row['nama_pemesan']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-jumlah="<?= $row['jumlah']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
+      <a class="btn btn-danger" href="hapus.php?id=<?= $row['id_order'];?>" onclick="return confirm('Confirm');">Hapus</a>
+      <a class="btn btn-info" href="nota_sementara.php?no_resi=<?= $row['no_resi'];?>">Cetak</a>
       </th>
       <?php endforeach;?>
     </tr>
@@ -152,6 +153,75 @@ if(isset($_POST['tambah'])){
     </div>
   </div>
 </div>
+<!-- modal tambah -->
+
+<div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      <form id="form-order">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="name">Nama</label>
+            <input type="text" name="nama" class="form-control" required id="name" autofocus>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="wa">No.Telp (WA)</label>
+            <input type="number" name="no_wa" class="form-control" required id="wa">
+          </div>
+          
+          
+          <div class="form-group col-md-12">
+            <label for="address col-md-12">Alamat </label>
+            <textarea name="alamat" class="form-control" required id="address" placeholder="Masukkan Alamat Penjemputan"></textarea>
+          </div>
+          <div class="form-group col-md-3 layanan">
+            <label>Layanan</label>
+            <select name="layanan[0][jenis]" class="form-control" required onchange="my_fun(this.value, 0);">
+              <option selected>Pilih..</option>
+              <option value="Kiloan">Kiloan</option>
+              <option value="Satuan">Satuan</option>
+              <option value="Karpet">Karpet</option>
+              <option value="Sepatu">Sepatu</option>
+            </select>
+          </div>
+          <div class="form-group col-md-7">
+            <label>Jenis item</label>
+            <select name="layanan[0][item]" class="form-control jenis-item-0">
+              <option>Pilih Layanan</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 jumlah">
+            <label>Jumlah</label>
+            <input type="number" name="layanan[0][jml_item]" class="form-control">
+          </div>
+          
+          <div class="form-group col-md-2 offset-md-10">
+            <button type="button" class="btn btn-link btn-tambah">Tambah +</button>
+          </div>
+        </div>
+
+        <input type="submit" value="Order Sekarang" class="btn btn-primary">
+      </form>
+    
+      </div>
+    </div>
+  </div>
+  <script>
+  function my_fun(str, id) {
+    fetch(`helper.php?jenis=${str}`)
+    .then(res => res.text())
+    .then(data => document.querySelector(`.jenis-item-${id}`).innerHTML = data)
+    .catch(err => console.log(err))
+  }
+</script>
 
 <!-- modal tambah -->
 

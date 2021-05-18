@@ -1,9 +1,12 @@
 
 <?php require 'template/header.php';
 
-$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE()");
+$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE() AND status_cucian ='antar'");
 $count = mysqli_num_rows($query); 
 $count;
+$total_cust= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian !='antar'");
+$c_cust = mysqli_num_rows($total_cust);
+$penghsl= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_pembayaran ='lunas'");
 
   ?>
   <!-- menu -->
@@ -17,13 +20,10 @@ $count;
 
                                         
                        <!-- batas -->
-                      <?php if($_SESSION['role']==='owner'):?> 
-                      <a href="<?= BASE_URL?>admin.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                        <!-- <i class="fas fa-download fa-sm text-white-50"></i> !-->
-                       Beralih ke Halaman Admin</a>
-                       <?php elseif($_SESSION['role']==='admin'):?>
+                    
+                       <?php if($_SESSION['role']==='owner'):?>
                        
-                        <a href="<?= BASE_URL?>admin.php?<?=$_SESSION['role']='owner'?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Beralih ke Halaman Owner</a>
+                        <a href="<?= BASE_URL?>/owner.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Beralih ke Halaman Owner</a>
                         
                         <?php endif; ?>
                        
@@ -58,7 +58,7 @@ $count;
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total Costumer</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $c_cust; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -75,8 +75,12 @@ $count;
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                            <?php $total = 0;
+                                             while($row= mysqli_fetch_assoc($penghsl)){
+$total += $row['total_bayar'];
+                                            } ?>
+                                                Total Penghasilan Hari ini</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total;?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

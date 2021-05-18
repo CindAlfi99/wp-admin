@@ -1,10 +1,10 @@
 <?php
 
-require '../asset/vendor_pdf/vendor/autoload.php';
-require '../config/DB.php';
+require 'asset/vendor_pdf/vendor/autoload.php';
+require 'config/DB.php';
 $form_date = $_GET['tanggal_pesan'];
 $to_date = $_GET['to_date'];
-$perintahQuery = mysqli_query($connection,"SELECT order_masuk.id,order_masuk.alamat_jemput,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jumlah,order_masuk.tanggal_pesan,order_masuk.total_bayar,order_masuk.tanggal_selesai,order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.tanggal_pesan between '$form_date' AND '$to_date' ORDER BY tanggal_pesan ASC");
+$perintahQuery = mysqli_query($connection,"SELECT order_masuk.id_order,order_masuk.alamat_jemput,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jumlah,order_masuk.tanggal_pesan,order_masuk.total_bayar,order_masuk.tanggal_selesai,order_masuk.status_cucian, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.tanggal_pesan between '$form_date' AND '$to_date' ORDER BY tanggal_pesan ASC");
 
 $html = '
 <!DOCTYPE html>
@@ -48,7 +48,7 @@ $html.='
 <th>Total Bayar</th>
 <th>Selesai</th>
 <th>Jenis Layanan</th>
-<th>Status</th>
+<th>Status Cucian</th>
 
 
 </tr>';
@@ -63,7 +63,7 @@ $html.=
     <td>'. $row["total_bayar"].'</td>
     <td>'. $row["tanggal_selesai"].'</td>
     <td>'. $row["jenis_layanan"].'</td>
-    <td>'. $row['status'].'</td>
+    <td>'. $row['status_cucian'].'</td>
     
     
   </tr>';

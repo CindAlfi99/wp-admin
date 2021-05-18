@@ -9,8 +9,8 @@ $no_resi = $_GET['no_resi'];
 
 
 <?php if(isset($no_resi)): 
-  $query = mysqli_query($connection, "SELECT order_masuk.id,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jumlah,order_masuk.tanggal_pesan, order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.status ='selesai' AND order_masuk.no_resi =$no_resi");
-  $querys = mysqli_query($connection, "SELECT order_masuk.id,order_masuk.no_resi, order_masuk.nama_pemesan,order_masuk.tanggal_selesai,order_masuk.alamat_jemput, order_masuk.jenis_layanan, order_masuk.jumlah, order_masuk.no_wa, order_masuk.tanggal_pesan, order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.status ='selesai' AND order_masuk.no_resi =$no_resi");
+  $query = mysqli_query($connection, "SELECT order_masuk.id_order,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jumlah,order_masuk.tanggal_pesan, order_masuk.ongkir, order_masuk.status_cucian, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.status_cucian ='selesai' AND order_masuk.no_resi =$no_resi");
+  $querys = mysqli_query($connection, "SELECT order_masuk.id_order,order_masuk.no_resi, order_masuk.nama_pemesan,order_masuk.tanggal_selesai,order_masuk.alamat_jemput, order_masuk.jenis_layanan, order_masuk.jumlah, order_masuk.no_wa, order_masuk.tanggal_pesan, order_masuk.ongkir, order_masuk.status_cucian, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.status_cucian ='selesai' AND order_masuk.no_resi =$no_resi");
   $q = mysqli_fetch_assoc($querys);?>
 <div class="row">
       <div class="col-6">
@@ -81,7 +81,7 @@ $total = $row['harga'] * $row['jumlah'] + $row['ongkir'];?>
 <!-- transaksi -->
 <p class="text-end float-right mr-5"><strong>Jumlah</strong>: <?= $count; ?></p>
 
-  <a href="cetak_payments.php?no_resi=<?= $q['no_resi'] ?>&status=lunas" class="btn btn-info mb-2 col-md-2 ml-3">Cetak</a>
+  <a href="cetak_payments.php?no_resi=<?= $q['no_resi'] ?>&status_cucian=antar" class="btn btn-info mb-2 col-md-2 ml-3">Cetak</a>
   
  
   

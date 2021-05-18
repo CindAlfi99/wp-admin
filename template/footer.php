@@ -21,6 +21,7 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
+    <script src="<?= BASE_URL; ?>js/order.js"></script>
     <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
     <!-- Page level custom scripts -->

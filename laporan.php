@@ -1,12 +1,12 @@
 <?php require 'template/header.php';
-require 'functions.php';
+// require 'functions.php';
 
 $query = mysqli_query($connection, "SELECT * FROM order_masuk");
 
 if(isset($_POST['filter_date'])){
   $form_date = $_POST['form_date'];
   $to_date = $_POST['to_date'];
-  $query =mysqli_query($connection, "SELECT * FROM order_masuk WHERE tanggal_pesan between '$form_date' AND '$to_date' ORDER BY id ASC");
+  $query =mysqli_query($connection, "SELECT * FROM order_masuk WHERE tanggal_pesan between '$form_date' AND '$to_date' ORDER BY id_order ASC");
   
   
 }
@@ -73,7 +73,7 @@ $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
                 <td><?= $row['nama_pemesan'] ?></td>
                 <td><?= $row['total_bayar'] ?></td>
                 <td><?= $row['tanggal_selesai'] ?></td>
-                <td><?= $row['status'] ?></td>
+                <td><?= $row['status_cucian'] ?></td>
                 <td><button type="button" id="tombolDetail"data-resi="<?= $row['no_resi']?>" data-jumlah="<?= $row['jumlah']?>" data-satuan="<?= $row['satuan']?>"  data-nama="<?= $row['nama_pemesan']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Detail
 </button></td>

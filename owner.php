@@ -1,7 +1,10 @@
-<?php require '../config/DB.php';
- require '../config/base_url.php';
+<?php 
 session_start();
-$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status='jemput'");
+require 'config/DB.php';
+ require 'config/base_url.php';
+
+
+$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian='jemput'");
 $querys = mysqli_query($connection, "SELECT * FROM users");
 $user = mysqli_fetch_assoc($querys);
 $count = mysqli_num_rows($query); 
@@ -92,86 +95,31 @@ $count;
                 Administrator
             </div>
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="admin.php">
+            <!-- <li class="nav-item active">
+                <a class="nav-link" href="owner.php">
                 
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
-            </li>
+            </li> -->
 
-            <!-- Divider -->
-            
-
-            <!-- Nav Item - Utilities Collapse Menu -->
            
-            <!-- Divider -->
          
             <hr class="sidebar-divider mt-0">
 
-            <!-- Heading -->
-           
-
-            <!-- Nav Item - Pages Collapse Menu -->
-           
-          
-            <!-- Nav Item - Customer -->
-        
-            <li class="nav-item active">
-                <a class="nav-link collapsed" href="customer.php" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-users"></i>
-                    <span>Customer</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Select Menu</h6>
-                        <a class="collapse-item" href="customer.php">Customer Today</a>
-                        <a class="collapse-item" href="all_customer.php">Customer Get All</a>
-                    </div>
-                </div>
-            </li>
-          
+            
             <!-- Nav Item - Order -->
             
             <li class="nav-item active">
-                <a class="nav-link" href="order.php">
-                <i class="fas fa-cart-plus"></i>
-                    <span>Order</span></a>
+                <a class="nav-link" href="laporan_owner.php">
+                <i class="fas fa-book"></i>
+                    <span>Laporan</span></a>
             </li>
             
            
             <!-- Divider -->
-            <!-- Nav Item - Layanan -->
-            <li class="nav-item active">
-                <a class="nav-link" href="layanan.php">
-                <i class="fas fa-hands"></i>
-                    <span>Layanan</span></a>
-            </li>
-            
-          <!-- Nav Item - Laporan -->
-             <li class="nav-item active">
-                <a class="nav-link" href="transaksi.php">
-                <i class="far fa-sticky-note"></i>
-                    <span>Transaksi</span></a>
-            </li>
-             <!-- Nav Item - Laporan -->
-             <li class="nav-item active">
-                <a class="nav-link" href="laporan.php">
-                <i class="fas fa-book"></i>
-                    <span>Laporan</span></a>
-            </li>
-            <?php if($_SESSION['role']==='owner'):?>
+          
          
-        
-      
-           <!-- Nav Item - Layanan -->
-             <li class="nav-item active">
-                <a class="nav-link" href="laporan.php">
-                <i class="fas fa-book"></i>
-                    <span>Laporan</span></a>
-            </li>
-            <?php endif;?>
+            
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
@@ -233,16 +181,9 @@ $count;
                                 </form>
                             </div>
                         </li>
-                        <!-- welcome -->
-                        <!-- <div class="row">
-                            <div class="col-md-12 float-left">
-                                <h3>Welcome, Admin Rumah Laundry 381</h3>
-                            </div>
-                        </div> -->
-                        <!-- batas -->
-
+                      
                         <!-- Nav Item - Alerts -->
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
   <i class="fa fa-bell mt-4" aria-hidden="true" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
  <span class="text-danger"> <?= $count;?></span>
   </i>
@@ -253,13 +194,13 @@ $count;
    <?php endwhile;?>
     
   </div>
-</div>
+</div> -->
                         
 
 
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                                              <!-- Nav Item - User Information -->
+                                              <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['nama'];?></span>
@@ -284,7 +225,7 @@ $count;
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <!-- data-toggle="modal" data-target="#logoutModal" -->
-                                <a class="dropdown-item" href="<?= BASE_URL?>logout.php" >
+                                <a class="dropdown-item" href="<?= BASE_URL?>/logout.php" >
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -294,4 +235,114 @@ $count;
                     </ul>
 
                 </nav>
+
+                <?php $query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE()");
+$count = mysqli_num_rows($query); 
+$count;?>
+   <div class="container-fluid">
+                
+                <!-- header -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                    
+                  
+
+                                    
+                   <!-- batas -->
+                
+                  <a href="<?= BASE_URL?>/admin.php?<?=$_SESSION['role']='owner'?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    <!-- <i class="fas fa-download fa-sm text-white-50"></i> !-->
+                   Beralih ke Halaman Admin</a>
+                 
+                   
+                </div>
+                
+                <!-- Content Row -->
+                <div class="row">
+
+                    <!--  Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Total Pesan Hari Ini</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count ?></div>
+                                    </div>
+                                    <div class="col-auto">
+                                    <i class="fas fa-cart-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--  Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Total Costumer</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <!-- Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Earnings (Annual)</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Pending Requests</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!-- batas -->
+
+        </div>
+      
+        
+     
+     
+    
+        
+        <!-- Footer -->
+        <!--  -->
+        
 
