@@ -9,7 +9,7 @@ function tambahForm() {
   const length = layanan.length
   const jenis = `<div class="form-group col-md-3 layanan">
   <label>Layanan</label>
-  <select name="layanan[${length-1}][jenis]" class="form-control" onchange="my_fun(this.value, ${length-1});">
+  <select name="layanan[${length}][jenis]" class="form-control" onchange="my_fun(this.value, ${length});">
     <option selected>Pilih..</option>
     <option value="kiloan">Kiloan</option>
     <option value="satuan">Satuan</option>
@@ -19,13 +19,13 @@ function tambahForm() {
   </div>`
   const item = `<div class="form-group col-md-7 jenis_item">
   <label>Jenis item</label>
-  <select name="layanan[${length-1}][item]" class="form-control jenis-item-${length-1}">
+  <select name="layanan[${length}][item]" class="form-control jenis-item-${length}">
     <option>Pilih Layanan</option>
   </select>
   </div>`
   const jumlah = `<div class="form-group col-md-2 jumlah">
   <label>Jumlah</label>
-  <input type="number" name="layanan[${length-1}][jml_item]" class="form-control">
+  <input type="number" name="layanan[${length}][jml_item]" class="form-control">
   </div>`
   const after = document.querySelectorAll('.jumlah')
   const form = jenis + item + jumlah
@@ -47,7 +47,12 @@ function order(e) {
   .then(data => {
     console.log(data)
     formOrder.reset()
-    alert('Pesanan Anda telah tersimpan. Petugas kami akan melakukan konfirmasi ke nomor Anda. Terima kasih')
+    
+    $('#modalTambah').modal('hide')
+ 
+    $(".alert").addClass("show")
+    $('.alert').alert()
+    
   })
   .catch(err => console.log(err))
 }

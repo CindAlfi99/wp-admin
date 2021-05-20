@@ -11,17 +11,26 @@
 
         
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js" crossorigin="anonymous"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js" crossorigin="anonymous"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+   
 
     <!-- Page level plugins -->
-    <script src="<?= BASE_URL; ?>js/order.js"></script>
+    <script src="<?= BASE_URL; ?>/js/order.js"></script>
+    <script>
+  function my_fun(str, id) {
+    fetch(`helper.php?jenis=${str}`)
+    .then(res => res.text())
+    .then(data => document.querySelector(`.jenis-item-${id}`).innerHTML = data)
+    .catch(err => console.log(err))
+  }
+</script>
     <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
     <!-- Page level custom scripts -->
@@ -30,17 +39,10 @@
     
     <!-- <script src="ajax/customer.js"></script> -->
     <script src="ajax/ajax.js"></script>
-   <script> 
-
-if (HelpCenter.user.role=="user"){
- $("div.user").show();
-}
-
-if (HelpCenter.user.role=="owner"){
- $("div.owner").show();
-}
-
-</script>
+    <!-- js untuk dihalaman konsumen -->
+    <script src="ajax/ajax_customer.js"></script>
+ <!-- js untuk dihalaman layanan -->
+ <script src="ajax/ajax_layanan.js"></script>
     <script>
     $(document).on('click','#tombolUbah', function(){
 let id = $(this).data('id');
@@ -50,7 +52,8 @@ let alamat = $(this).data('alamat');
 let layanan = $(this).data('layanan');
 let item = $(this).data('item');
 let jumlah = $(this).data('jumlah');
-
+let cucian = $(this).data('cucian');
+let pembayaran = $(this).data('pembayaran');
 let pesan = $(this).data('pesan');
 let selesai = $(this).data('selesai');
 
@@ -61,7 +64,8 @@ $('.modal-body #alamat_jemput').val(alamat);
 $('.modal-body #jenis_layanan').val(layanan);
 $('.modal-body #jenis_item').val(item);
 $('.modal-body #jumlah').val(jumlah);
-
+$('.modal-body #cucian').val(cucian);
+$('.modal-body #pembayaran').val(pembayaran);
 $('.modal-body #tgl_pesan').val(pesan);
 $('.modal-body #tgl_selesai').val(selesai);
 

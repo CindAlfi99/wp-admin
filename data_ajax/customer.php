@@ -29,14 +29,17 @@ $result =mysqli_query($db, "SELECT * FROM order_masuk WHERE nama_pemesan LIKE '%
    ?>
     <tr>
     <th scope="row"><?= $i++;?></th>
-      <td><?=$row['nama_pemesan'];?></td>
-      <td><?=$row['no_wa'];?></td>
-      <td><?=$row['alamat_jemput'];?></td>
-      <th><?=$row['jenis_layanan'];?></th>
-      <td><?=$row['jenis_item'];?></td>
-      <td><?=$row['tanggal_pesan'];?></td>
-      <td><?=$row['tanggal_selesai'];?></td>
-      <td>Edit |Hapus</td>
+      <td><?=$rows['nama_pemesan'];?></td>
+      <td><?=$rows['no_wa'];?></td>
+      <td><?=$rows['alamat_jemput'];?></td>
+      <th><?=$rows['jenis_layanan'];?></th>
+      <td><?=$rows['jenis_item'];?></td>
+      <td><?=$rows['tanggal_pesan'];?></td>
+      <td><?=$rows['tanggal_selesai'];?></td>
+      <th><a type="submit" class="btn btn-primary" id="tombolUbah" data-id="<?= $rows['id_order']?>" data-nama="<?= $rows['nama_pemesan']?>" data-cucian="<?= $rows['status_cucian']?>" data-pembayaran="<?= $rows['status_pembayaran']?>" data-wa="<?= $rows['no_wa']?>" data-alamat="<?= $rows['alamat_jemput']?>" data-layanan="<?= $rows['jenis_layanan']?>" data-item="<?= $rows['jenis_item']?>" data-jumlah="<?= $rows['jumlah']?>" data-pesan="<?= $rows['tanggal_pesan']?>" data-selesai="<?= $rows['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
+      <a class="btn btn-danger" href="hapus.php?id=<?= $row['id_order'];?>" onclick="return confirm('Confirm');">Hapus</a>
+      <a class="btn btn-info" href="nota_sementara.php?no_resi=<?= $row['no_resi'];?>">Cetak</a>
+      </th>
     </tr>
     <?php endwhile;?>
 

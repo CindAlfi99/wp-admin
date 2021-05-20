@@ -1,6 +1,6 @@
-let Cari = document.getElementById('cari');
-let containe = document.getElementById('containe');
-Cari.addEventListener('keyup', () => {
+let Carie = document.getElementById('carilayanan');
+let containew = document.getElementById('containew');
+Carie.addEventListener('keyup', () => {
 
     //buat object ajax
    
@@ -10,12 +10,12 @@ Cari.addEventListener('keyup', () => {
     // cek kesiapan ajax
     xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                containe.innerHTML = xhr.responseText;
+                containew.innerHTML = xhr.responseText;
 
             }
         }
         ////ekseskusi ajax
-    xhr.open('GET', 'data_ajax/customer.php?Cari=' + Cari.value, true);
+    xhr.open('GET', 'data_ajax/layanan.php?Carie=' + Carie.value, true);
     xhr.send();
     // }else{
     //     container.innerHTML = 'Masukkan Nomor resi anda!';

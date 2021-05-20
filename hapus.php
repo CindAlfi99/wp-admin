@@ -1,5 +1,5 @@
 <?php
-require '../config/DB.php';
+require 'config/DB.php';
 
 
 
@@ -15,6 +15,6 @@ if(hapus($id)>0){
 
 function hapus($id){
     global $connection;
-mysqli_query($connection, "DELETE FROM order_masuk WHERE id=$id");
+mysqli_query($connection, "DELETE FROM order_masuk WHERE id_order=$id");
 return mysqli_affected_rows($connection);
 }

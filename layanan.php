@@ -38,7 +38,7 @@ if(isset($_POST['tambah'])){
 <div class="row">
 <div class="col-md-5">
 <div class="form-group mb-3">
-    <input type="text" class="form-control" id="cari" placeholder="cari" autofocus autocomplete="off">
+    <input type="text" class="form-control" id="carilayanan" placeholder="cari..." autofocus autocomplete="off">
   </div>
 </div></div>
 <div class="row">
@@ -48,7 +48,7 @@ if(isset($_POST['tambah'])){
 <div class="row">
 <h5 class="ml-3 mb-3 mt-4"><b>Daftar Layanan Rumah Laundry 381</b></h5>
 <div class="col-md-12">
-<div class="containe" id="containe">
+<div class="containe" id="containew">
 <table class="table table-striped text-center">
   <thead>
     <tr>

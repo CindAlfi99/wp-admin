@@ -1,33 +1,31 @@
 <?php require 'template/header.php';
 require 'functions.php';
-// data hari ini
-$query = mysqli_query($connection, "SELECT * FROM order_masuk ");
+// data seluruh konsumen yang belum selesai
+$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian != antar OR status_cucian != diambil");
 //data di layanan
 $data = mysqli_query($connection,"SELECT * FROM layanan");
-// data update
+
 if(isset($_POST['ubah'])){
   if(ubahProduk($_POST) > 0){
-    echo "<script> alert('Data berhasil diubah');
-    document.location.href ='all_customer.php'; </script>";
+    $alert_ubah = true;
   }else{
-
-    echo "<script> alert('Data gagal diubah!');
-    document.location.href ='all_customer.php'; </script>";
+$alert_gagal = true;
  
   }
 }
 
-if(isset($_POST['tambah'])){
-  if(tambahProduk($_POST) > 0){
-    echo "<script> alert('Data berhasil diubah');
-    document.location.href ='customer.php'; </script>";
-  }else{
 
-    echo "<script> alert('Data gagal diubah!');
-    document.location.href ='customer.php'; </script>";
+// if(isset($_POST['tambah'])){
+//   if(tambahProduk($_POST) > 0){
+//     echo "<script> alert('Data berhasil diubah');
+//     document.location.href ='customer.php'; </script>";
+//   }else{
+
+//     echo "<script> alert('Data gagal diubah!');
+//     document.location.href ='customer.php'; </script>";
  
-  }
-}
+//   }
+// }
 ?>
 
 
@@ -35,18 +33,46 @@ if(isset($_POST['tambah'])){
 <!-- search -->
 <div class="row">
 <div class="col-md-5">
-<div class="form-group mb-3">
-    <input type="text" class="form-control" id="cari" placeholder="cari" autofocus autocomplete="off">
+<!-- alert simpan -->
+<div class="alert alert-success alert-dismissible fade" role="alert">
+  <strong>Berhasil disimpan!</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<!-- alert end -->
+<!-- alert ubah -->
+<?php if(isset($alert_ubah)):?>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  <strong>Berhasil diubah!</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php endif?>
+<?php if(isset($alert_gagal)):?>
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  <strong>Gagal diubah!</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<?php endif?>
+<!-- alert end -->
+
+<div class="form-group mb-2">
+    <input type="text" class="form-control" id="cari_customer" placeholder="cari.." autofocus autocomplete="off">
   </div>
 </div></div>
-<!-- <div class="row">
+<div class="row">
 <div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
   Tambah data
-</button></div></div> -->
+</button></div>
+<div class="col-md-12 text-right"><a href="#" onclick="window.location.reload();"> Segarkan Halaman </a></div></div>
 <div class="row">
 <h5 class="ml-3 mb-3">Data Konsumen Hari Ini</h5>
 <div class="col-md-12">
-<div class="containe" id="containe">
+<div class="containe" id="containers">
 <table class="table table-striped text-center">
   <thead>
     <tr>
@@ -56,8 +82,11 @@ if(isset($_POST['tambah'])){
       <th scope="col">Alamat</th>
       <th scope="col">Jenis Layanan</th>
       <th scope="col">Jenis Item</th>
-      <th scope="col">Tanggal Pesan</th>
       <th scope="col">Jumlah</th>
+      <th scope="col">Status Cucian</th>
+      <th scope="col">Status Pembayaran</th>
+      <th scope="col">Mode Pesan</th>
+      <th scope="col">Tanggal Pesan</th>
       <th scope="col">Tanggal Selesai</th>
       <th scope="col">Opsi</th>
     </tr>
@@ -75,10 +104,14 @@ if(isset($_POST['tambah'])){
       <th><?=$row['jenis_layanan'];?></th>
       <td><?=$row['jenis_item'];?></td>
       <td><?=$row['jumlah'];?></td>
+      <td><?=$row['status_cucian'];?></td>
+      <td><?=$row['status_pembayaran'];?></td>
+      <td><?=$row['mode'];?></td>
       <td><?=$row['tanggal_pesan'];?></td>
       <td><?=$row['tanggal_selesai'];?></td>
-      <th><a type="submit" class="btn btn-primary" id="tombolUbah"data-id="<?= $row['id']?>"data-jumlah="<?= $row['jumlah']?>" data-nama="<?= $row['nama_pemesan']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
-      <a class="btn btn-primary" href="hapus.php?id=<?= $row['id'];?>" onclick="return confirm('Confirm');">Hapus</a>
+      <th><a type="submit" class="btn btn-primary" id="tombolUbah" data-id="<?= $row['id_order']?>" data-nama="<?= $row['nama_pemesan']?>" data-cucian="<?= $row['status_cucian']?>" data-pembayaran="<?= $row['status_pembayaran']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-jumlah="<?= $row['jumlah']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
+      <a class="btn btn-danger" href="hapus.php?id=<?= $row['id_order'];?>" onclick="return confirm('Confirm');">Hapus</a>
+      <a class="btn btn-info" href="nota_sementara.php?no_resi=<?= $row['no_resi'];?>">Cetak</a>
       </th>
       <?php endforeach;?>
     </tr>
@@ -128,8 +161,18 @@ if(isset($_POST['tambah'])){
   </div>
   <div class="form-group">
     <label for="jenis_item">Jumlah</label>
-    <input type="number" class="form-control" name="jumlah" id="jumlah" aria-describedby="emailHelp">
+    <input type="number" class="form-control"  name="jumlah" id="jumlah" aria-describedby="emailHelp">
   </div>
+  <div class="form-group">
+    <label for="jenis_item">Status Cucian</label>
+    <input type="text" class="form-control" name="cucian" id="cucian" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="jenis_item">Status Pembayaran</label>
+    <input type="text" class="form-control" name="pembayaran" id="pembayaran" aria-describedby="emailHelp">
+  </div>
+  
+ 
   <div class="form-group">
     <label for="tgl_pesan">Tanggal Pesan</label>
     <input type="text" class="form-control" name="tgl_pesan" id="tgl_pesan" aria-describedby="emailHelp">
@@ -142,13 +185,75 @@ if(isset($_POST['tambah'])){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="ubah" class="btn btn-primary" >Update</button>
+        <button type="submit" name="ubah" class="btn btn-primary" id="btn" >Update</button>
       </div>
  
     </form>
     </div>
   </div>
 </div>
+<!-- modal tambah -->
+
+<div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+
+      <form id="form-order">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="name">Nama</label>
+            <input type="text" name="nama" class="form-control" required id="name" autofocus>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="wa">No.Telp (WA)</label>
+            <input type="number" name="no_wa" class="form-control" required id="wa">
+          </div>
+          
+          
+          <div class="form-group col-md-12">
+            <label for="address col-md-12">Alamat </label>
+            <textarea name="alamat" class="form-control" required id="address" placeholder="Masukkan Alamat Penjemputan"></textarea>
+          </div>
+          <div class="form-group col-md-3 layanan">
+            <label>Layanan</label>
+            <select name="layanan[0][jenis]" class="form-control" required onchange="my_fun(this.value, 0);">
+              <option selected>Pilih..</option>
+              <option value="Kiloan">Kiloan</option>
+              <option value="Satuan">Satuan</option>
+              <option value="Karpet">Karpet</option>
+              <option value="Sepatu">Sepatu</option>
+            </select>
+          </div>
+          <div class="form-group col-md-7">
+            <label>Jenis item</label>
+            <select name="layanan[0][item]" class="form-control jenis-item-0">
+              <option>Pilih Layanan</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 jumlah">
+            <label>Jumlah</label>
+            <input type="number" name="layanan[0][jml_item]" class="form-control">
+          </div>
+          
+          <div class="form-group col-md-2 offset-md-10">
+            <button type="button" class="btn btn-link btn-tambah">Tambah +</button>
+          </div>
+        </div>
+
+        <input type="submit"  value="Order Sekarang" class="btn btn-primary">
+      </form>
+    
+      </div>
+    </div>
+  </div>
+ 
 
 <!-- modal tambah -->
 
@@ -191,9 +296,7 @@ if(isset($_POST['tambah'])){
   <div class="form-group">
     <label for="jenis_item">Jenis Item</label>
       <select class="form-control" id="jenis_item" name="jenis_item">
-      <?php while($row= mysqli_fetch_assoc($data)):?>
-       <option value="<?= $row['jenis_item'];?>"><?= $row['jenis_item'];?></option>
-       <?php endwhile;?>
+
    </select>
  
   </div>

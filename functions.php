@@ -9,10 +9,11 @@ $alamat = $data['alamat_jemput'];
 $layanan = $data['jenis_layanan'];
 $item = $data['jenis_item'];
 $jumlah = $data['jumlah'];
-
+$cucian = $data['cucian'];
+$pembayaran = $data['pembayaran'];
 $pesan = $data['tgl_pesan'];
 $selesai = $data['tgl_selesai'];
-mysqli_query($conn, "UPDATE order_masuk SET nama_pemesan = '$pemesan', no_wa = '$wa', alamat_jemput = '$alamat', jenis_layanan = '$layanan', jenis_item = '$item', jumlah = '$jumlah', tanggal_pesan = '$pesan', tanggal_selesai = '$selesai' WHERE id = $id");
+mysqli_query($conn, "UPDATE order_masuk SET nama_pemesan = '$pemesan', no_wa = '$wa', alamat_jemput = '$alamat', jenis_layanan = '$layanan', jenis_item = '$item', jumlah = '$jumlah', status_cucian = '$cucian', status_pembayaran = '$pembayaran',tanggal_pesan = '$pesan', tanggal_selesai = '$selesai' WHERE id_order = $id");
 return mysqli_affected_rows($conn);
 
 }
@@ -23,7 +24,7 @@ function ubahLayanan($data){
     $item = $data['jenis_item'];
     $satuan = $data['satuan'];
     $harga = $data['harga'];
-    mysqli_query($conn, "UPDATE layanan SET jenis_layanan = '$layanan', jenis_item = '$item',satuan = '$satuan',harga = '$harga' WHERE id = $id");
+    mysqli_query($conn, "UPDATE layanan SET jenis_layanan = '$layanan', jenis_item = '$item',satuan = '$satuan',harga = '$harga' WHERE id_layanan = $id");
     return mysqli_affected_rows($conn);
 }
    

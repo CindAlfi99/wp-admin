@@ -58,7 +58,7 @@ $query = mysqli_query($connection, "SELECT * FROM order_masuk");
               
             
             <td> <?php
-                  if ($row['status_pembayaran'] === 'belum_luna'):
+                  if ($row['status_pembayaran'] === 'belum_lunas'):
                   ?>
                     <a href="status.php?id_pembayaran=<?= $row['id_order'] ?>&status_pembayaran=lunas" class="btn btn-outline-info">Lunas</a>
                    <?php  elseif ($row['status_pembayaran'] === 'lunas'):?>
