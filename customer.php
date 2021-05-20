@@ -72,6 +72,7 @@ $alert_gagal = true;
 <div class="row">
 <h5 class="ml-3 mb-3">Data Konsumen Hari Ini</h5>
 <div class="col-md-12">
+
 <div class="containe" id="containers">
 <table class="table table-striped text-center">
   <thead>
@@ -93,6 +94,7 @@ $alert_gagal = true;
    
   </thead>
   <tbody>
+  
   <?php
   $i = 1;
    foreach($query as $row):?>
@@ -115,10 +117,11 @@ $alert_gagal = true;
       </th>
       <?php endforeach;?>
     </tr>
-  
+   
   </tbody>
 </table>
 </div>
+
 
 </div>
 </div>

@@ -5,7 +5,7 @@ $query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucia
 $querys = mysqli_query($connection, "SELECT * FROM users");
 $user = mysqli_fetch_assoc($querys);
 $count = mysqli_num_rows($query); 
-$count;
+
  
     // if (isset($_SESSION['role']) ==='owner') {
     //    $show = 'owner';
@@ -232,11 +232,11 @@ $count;
                         <!-- batas -->
 
                         <!-- Nav Item - Alerts -->
-                        <div class="dropdown">
-  <i class="fa fa-bell mt-4" aria-hidden="true" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown" id="div1">
+                        <i class="fa fa-bell mt-4" aria-hidden="true" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
  <span class="text-danger"> <?= $count;?></span>
   </i>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2" >
   
   <?php while($row = mysqli_fetch_assoc($query)):?>
     <button class="dropdown-item" type="button"><i class="far fa-user"></i> Konsumen : <?= $row['nama_pemesan'];?><br>Layanan : <span class="text-danger"><?= $row['jenis_layanan'];?></span><br> Jumlah: <?= $row['jumlah'] ?></button>
