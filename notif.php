@@ -9,7 +9,7 @@ $count = mysqli_num_rows($query);
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2" >
   
   <?php while($row = mysqli_fetch_assoc($query)):?>
-    <a class="dropdown-item" href="customer.php?id_order=<?=$row['id_order'];?>"><i class="far fa-user"></i> Konsumen : <?= $row['nama_pemesan'];?><br>Layanan : <span class="text-danger"><?= $row['jenis_layanan'];?></span><span>Tgl : <?= $row['tanggal_pesan'];?><br></span><br> Jumlah: <?= $row['jumlah'] ?></a>
+    <a class="dropdown-item" href="customer.php?id_order=<?=$row['id_order'];?>"><i class="far fa-user"></i> Konsumen : <?= $row['nama_pemesan'];?><br>Layanan : <span class="text-danger"><?= $row['jenis_layanan'];?></span><br><span>Tgl : <?= $row['tanggal_pesan'];?><br></span><br> Jumlah: <?= $row['jumlah'] ?></a>
    <?php endwhile;?>
     
   </div>

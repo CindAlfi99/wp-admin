@@ -9,6 +9,14 @@ $c_cust = mysqli_num_rows($total_cust);
 $penghsl= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_pembayaran ='lunas'");
 
   ?>
+  <!-- alert ubah -->
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Berhasil Login!</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
   <!-- menu -->
                 <div class="container-fluid">
                 

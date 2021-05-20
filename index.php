@@ -79,7 +79,7 @@ else{
                                         <img width="150" height="60" src="<?= ROOT;?>asset/img/logo.jpg" alt="">
                                     </div>
                                     <?php if(isset($error)) : ?>
-    <p style="color:red; font-style:italic;">Username/Password salah</p>
+    <p style="color:red; font-style:italic;"><b>Username / Password Salah</b></p>
     <?php endif; ?>
                                     <form method="post" action="">
                                         <div class="form-group">

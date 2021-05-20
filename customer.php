@@ -14,6 +14,13 @@ $alert_gagal = true;
   }
 }
 
+// if (isset($_POST['tampil'])) {
+//   $value = $_POST['show'];
+//   $perintahQuery = "SELECT * FROM order_masuk LIMIT $value";
+//   $query = mysqli_query($connection, $perintahQuery);
+// }
+
+
 
 // if(isset($_POST['tambah'])){
 //   if(tambahProduk($_POST) > 0){
@@ -27,6 +34,11 @@ $alert_gagal = true;
 //   }
 // }
 ?>
+
+
+
+
+
 
 
 <div class="container scroll">
@@ -60,11 +72,31 @@ $alert_gagal = true;
 <?php endif?>
 <!-- alert end -->
 
+
+
 <div class="form-group mb-2">
     <input type="text" class="form-control" id="cari_customer" placeholder="cari.." autofocus autocomplete="off">
   </div>
 </div></div>
 <div class="row">
+  <div class="col-md-12">
+    <!-- ini show
+  <form method="post" action="" class="mt-5">
+      <div class="form-row align-items-center">
+        <div class="col-auto my-1">
+          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="show" id="show">
+            <option selected>Show</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <button type="submit" name="tampil">Tampil</button>
+    </form>
+    end show -->
+  </div> 
 <div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
   Tambah data
 </button></div>
@@ -94,8 +126,17 @@ $alert_gagal = true;
    
   </thead>
   <tbody>
+
   
   <?php
+  $batas = 5;
+  $halaman= $_GET['halaman'];
+  if(!empty($halaman)){
+    $posisi = 0;
+    $halaman = 1;
+  }else{
+    $posisi = ($halaman-1) *;
+  }
   $i = 1;
    foreach($query as $row):?>
     <tr>
@@ -256,6 +297,8 @@ $alert_gagal = true;
       </div>
     </div>
   </div>
+
+
  
 
 <!-- modal tambah -->
