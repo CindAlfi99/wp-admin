@@ -12,6 +12,22 @@
         
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script>$(document).ready(function() {
+    $('#example').DataTable();
+} );</script>
+ <script>$(document).ready(function() {
+    $('#layanan').DataTable();
+} );</script>
+<script>$(document).ready(function() {
+    $('#laporan').DataTable();
+} );</script>
+<script>$(document).ready(function() {
+    $('#cust').DataTable();
+} );</script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -115,6 +131,24 @@ var channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
   alert(JSON.stringify(data));
 $.ajax({url: "notif.php", success: function(result){
+    $("#div1").html(result);
+    
+  }});
+});
+</script>
+<script>
+
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('ee0a2d4a7d1a6c8ef4f8', {
+  cluster: 'ap1'
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+  alert(JSON.stringify(data));
+$.ajax({url: "ajax_cust.php", success: function(result){
     $("#div1").html(result);
     
   }});

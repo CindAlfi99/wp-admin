@@ -49,7 +49,7 @@ if(isset($_POST['tambah'])){
 <h5 class="ml-3 mb-3 mt-4"><b>Daftar Layanan Rumah Laundry 381</b></h5>
 <div class="col-md-12">
 <div class="containe" id="containew">
-<table class="table table-striped text-center">
+<table class="table table-striped text-center" id="layanan">
   <thead>
     <tr>
       <th scope="col">No</th>

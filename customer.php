@@ -35,8 +35,28 @@ $alert_gagal = true;
 // }
 ?>
 
+<head>
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css"/> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css"/> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
 
+ 
+   
+ 
+    
+
+</head>
 
 
 
@@ -74,28 +94,13 @@ $alert_gagal = true;
 
 
 
-<div class="form-group mb-2">
+<!-- <div class="form-group mb-2">
     <input type="text" class="form-control" id="cari_customer" placeholder="cari.." autofocus autocomplete="off">
-  </div>
+  </div> -->
 </div></div>
 <div class="row">
   <div class="col-md-12">
-    <!-- ini show
-  <form method="post" action="" class="mt-5">
-      <div class="form-row align-items-center">
-        <div class="col-auto my-1">
-          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="show" id="show">
-            <option selected>Show</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </div>
-        <button type="submit" name="tampil">Tampil</button>
-    </form>
-    end show -->
+   
   </div> 
 <div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
   Tambah data
@@ -106,7 +111,8 @@ $alert_gagal = true;
 <div class="col-md-12">
 
 <div class="containe" id="containers">
-<table class="table table-striped text-center">
+
+<table id="example">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -125,18 +131,11 @@ $alert_gagal = true;
     </tr>
    
   </thead>
-  <tbody>
+  <tbody id="div1">
 
   
   <?php
-  $batas = 5;
-  $halaman= $_GET['halaman'];
-  if(!empty($halaman)){
-    $posisi = 0;
-    $halaman = 1;
-  }else{
-    $posisi = ($halaman-1) *;
-  }
+
   $i = 1;
    foreach($query as $row):?>
     <tr>
@@ -161,6 +160,7 @@ $alert_gagal = true;
    
   </tbody>
 </table>
+
 </div>
 
 

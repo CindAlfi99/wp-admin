@@ -28,6 +28,7 @@ if ($_GET["jenis"]) {
             </select>";
     }
 } else {
+    
     $val = $_POST;
     $length = count($_POST['layanan']);
     $no_resi = rand(1000, 9999);

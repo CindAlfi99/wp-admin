@@ -1,7 +1,7 @@
 <?php require 'template/header.php';
 require 'functions.php';
 // data seluruh konsumen yang belum selesai
-$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian != antar OR status_cucian != diambil");
+$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian != 'antar' OR status_cucian != 'diambil'");
 //data di layanan
 $data = mysqli_query($connection,"SELECT * FROM layanan");
 
@@ -60,9 +60,9 @@ $alert_gagal = true;
 <?php endif?>
 <!-- alert end -->
 
-<div class="form-group mb-2">
+<!-- <div class="form-group mb-2">
     <input type="text" class="form-control" id="cari_customer" placeholder="cari.." autofocus autocomplete="off">
-  </div>
+  </div> -->
 </div></div>
 <div class="row">
 <div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
@@ -73,7 +73,7 @@ $alert_gagal = true;
 <h5 class="ml-3 mb-3">Data Konsumen Hari Ini</h5>
 <div class="col-md-12">
 <div class="containe" id="containers">
-<table class="table table-striped text-center">
+<table class="table table-striped text-center" id="cust">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -95,7 +95,7 @@ $alert_gagal = true;
   <tbody>
   <?php
   $i = 1;
-   foreach($query as $row):?>
+   while($row = mysqli_fetch_assoc($query)):?>
     <tr>
       <th scope="row"><?= $i++;?></th>
       <td><?=$row['nama_pemesan'];?></td>
@@ -113,7 +113,7 @@ $alert_gagal = true;
       <a class="btn btn-danger" href="hapus.php?id=<?= $row['id_order'];?>" onclick="return confirm('Confirm');">Hapus</a>
       <a class="btn btn-info" href="nota_sementara.php?no_resi=<?= $row['no_resi'];?>">Cetak</a>
       </th>
-      <?php endforeach;?>
+      <?php endwhile;?>
     </tr>
   
   </tbody>
