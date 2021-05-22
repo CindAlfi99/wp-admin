@@ -4,28 +4,7 @@ $connection = mysqli_connect('localhost','root','','rumahlaundry381');
 $query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE()");
 //data di layanan
 $data = mysqli_query($connection,"SELECT * FROM layanan");
-// data update
 
-
-// if (isset($_POST['tampil'])) {
-//   $value = $_POST['show'];
-//   $perintahQuery = "SELECT * FROM order_masuk LIMIT $value";
-//   $query = mysqli_query($connection, $perintahQuery);
-// }
-
-
-
-// if(isset($_POST['tambah'])){
-//   if(tambahProduk($_POST) > 0){
-//     echo "<script> alert('Data berhasil diubah');
-//     document.location.href ='customer.php'; </script>";
-//   }else{
-
-//     echo "<script> alert('Data gagal diubah!');
-//     document.location.href ='customer.php'; </script>";
- 
-//   }
-// }
 ?>
   
   <?php
@@ -49,8 +28,9 @@ $data = mysqli_query($connection,"SELECT * FROM layanan");
       <a class="btn btn-danger" href="hapus.php?id=<?= $row['id_order'];?>" onclick="return confirm('Confirm');">Hapus</a>
       <a class="btn btn-info" href="nota_sementara.php?no_resi=<?= $row['no_resi'];?>">Cetak</a>
       </th>
-      <?php endforeach;?>
+     
     </tr>
+    <?php endforeach;?>
    
   
 

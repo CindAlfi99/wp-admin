@@ -10,21 +10,23 @@ $penghsl= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_pemb
 
   ?>
   <!-- alert ubah -->
-
+  <?php if($_SESSION['role']==='admin'):?>
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   <strong>Berhasil Login!</strong>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-  <!-- menu -->
+<?php endif; ?>
+  <!-- menu 
+  -->
                 <div class="container-fluid">
                 
                     <!-- header -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                         
-                      
+              
 
                                         
                        <!-- batas -->
@@ -39,6 +41,7 @@ $penghsl= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_pemb
                     
                     <!-- Content Row -->
                     <div class="row">
+                    
 
                         <!--  Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">

@@ -131,6 +131,7 @@ var channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
   alert(JSON.stringify(data));
 $.ajax({url: "notif.php", success: function(result){
+ 
     $("#div1").html(result);
     
   }});
@@ -147,32 +148,15 @@ var pusher = new Pusher('ee0a2d4a7d1a6c8ef4f8', {
 
 var channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
-  alert(JSON.stringify(data));
-$.ajax({url: "ajax_cust.php", success: function(result){
-    $("#div1").html(result);
+  
+$.ajax({url: "pusher_cust.php", success: function(result){
+ 
+    $("#div1").html("");
+    $("#div1").append(result);
     
   }});
 });
 </script>
-<script>
-
-// Enable pusher logging - don't include this in production
-Pusher.logToConsole = true;
-
-var pusher = new Pusher('ee0a2d4a7d1a6c8ef4f8', {
-  cluster: 'ap1'
-});
-
-var channel = pusher.subscribe('my-channel');
-channel.bind('my-event', function(data) {
-  alert(JSON.stringify(data));
-$.ajax({url: "cust_noreload.php", success: function(result){
-    $("#div2").html(result);
-    
-  }});
-});
-</script>
-
 
 
 

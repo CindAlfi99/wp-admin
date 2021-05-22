@@ -132,8 +132,6 @@ $alert_gagal = true;
    
   </thead>
   <tbody id="div1">
-
-  
   <?php
 
   $i = 1;
@@ -155,8 +153,9 @@ $alert_gagal = true;
       <a class="btn btn-danger" href="hapus.php?id=<?= $row['id_order'];?>" onclick="return confirm('Confirm');">Hapus</a>
       <a class="btn btn-info" href="nota_sementara.php?no_resi=<?= $row['no_resi'];?>">Cetak</a>
       </th>
-      <?php endforeach;?>
+      
     </tr>
+    <?php endforeach;?>
    
   </tbody>
 </table>
