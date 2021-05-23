@@ -2,8 +2,8 @@
 $no_resi = $_GET['no_resi'];
 require 'asset/vendor_pdf/vendor/autoload.php';
 require 'config/DB.php';
-$query =  mysqli_query($connection, "SELECT DISTINCT alamat_jemput, nama_pemesan,no_wa,tanggal_pesan,tanggal_selesai FROM order_masuk WHERE no_resi = $no_resi");
-$perintahQuerys = mysqli_query($connection, "SELECT order_masuk.jenis_layanan, order_masuk.jenis_item, order_masuk.jumlah,layanan.jenis_item, layanan.satuan, FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.no_resi = $no_resi");
+$query =  mysqli_query($connection, "SELECT DISTINCT no_resi, alamat_jemput, nama_pemesan,no_wa,tanggal_pesan,tanggal_selesai FROM order_masuk WHERE no_resi = $no_resi");
+$perintah = mysqli_query($connection, "SELECT order_masuk.id_order, order_masuk.jenis_layanan, order_masuk.jenis_item, order_masuk.jumlah,order_masuk.ongkir, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.no_resi = $no_resi ");
 $join_tbl = mysqli_fetch_assoc($query);
 
 ?>
@@ -198,6 +198,9 @@ hr {
                             <div class="my-1">
                             Alamat : <?= $join_tbl["alamat_jemput"]?>
                             </div>
+                            <div class="my-1">
+                            Nomor Resi : <?= $join_tbl["no_resi"]?>
+                            </div>
                            
                         </div>
                     </div>
@@ -216,7 +219,7 @@ hr {
                     <!-- /.col -->
                 </div>
 
-                <div class="mt-4">
+                <div class="mt-4 text-center">
                     <div class="row text-600 text-white bgc-default-tp1 py-25">
                     <div class="d-none d-sm-block col-1">No</div>
                         <div class="col-9 col-sm-5">Jenis Layanan</div>
@@ -232,12 +235,12 @@ hr {
                         <div class="row mb-2 mb-sm-0 py-25">
                         <?php  
                         $i=1;
-                        while($row = mysqli_fetch_assoc($perintahQuerys)): ?>
+                        while($row = mysqli_fetch_assoc($perintah)): ?>
                           <div class="d-none d-sm-block col-1"><?= $i++;?></div>
                             <div class="col-9 col-sm-5"><?= $row["jenis_layanan"]?></div>
                            
                             <div class="d-none d-sm-block col-2 text-95"><?= $row["jenis_item"]?></div>
-                            <div class="d-none d-sm-block col-2"><?= $row["jumlah"]?> <?= $row["satuan"]?></div>
+                            <div class="d-none d-sm-block col-2"><center><?= $row["jumlah"]?> <?= $row["satuan"]?></center></div>
                            
                             
 <?php endwhile;?>
@@ -286,7 +289,7 @@ hr {
     </div>
 </div>
 <!-- button kembali -->
-<a href="admin.php" class="btn btn-primary mt-3 col-1 float-right mr-5">Kembali</a>
+<a href="admin.php" class="btn btn-primary mt-3 col-1 col-3 float-right mr-5 mb-5">Kembali</a>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

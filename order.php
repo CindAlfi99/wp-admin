@@ -4,18 +4,12 @@ $query = mysqli_query($connection, "SELECT * FROM order_masuk");
 
 <div class="container scroll">
 
-  <div class="row">
-    <div class="col-md-5 mb-3">
-      <div class="form-group  mb-2">
-        <input type="text" class="form-control" id="cari" placeholder="cari" autofocus autocomplete="off">
-      </div>
-    </div>
-  </div>
+  
   <div class="row">
     <h5 class="ml-3">Data Order</h5>
     <div class="col-md-12">
       <div id="container">
-        <table class="table table-striped text-center table-hover">
+        <table class="table table-striped text-center table-hover" id="order">
           <thead>
             <tr>
               <th scope="col">No</th>

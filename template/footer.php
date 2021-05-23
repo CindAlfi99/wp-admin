@@ -28,6 +28,9 @@
 <script>$(document).ready(function() {
     $('#cust').DataTable();
 } );</script>
+<script>$(document).ready(function() {
+    $('#order').DataTable();
+} );</script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

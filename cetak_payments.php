@@ -327,7 +327,7 @@ hr {
     </div>
 </div>
 <!-- button kembali -->
-<a href="admin.php" class="btn btn-primary mt-3 col-1 float-right mr-5">Kembali</a>
+<a href="admin.php" class="btn btn-primary mt-3 col-1 col-3 float-right mr-5 mb-5">Kembali</a>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
