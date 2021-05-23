@@ -1,13 +1,10 @@
-<?php require 'functions.php';
-$connection = mysqli_connect('localhost','root','','rumahlaundry381');
-// data hari ini
-$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE()");
-//data di layanan
-$data = mysqli_query($connection,"SELECT * FROM layanan");
 
-?>
-  
   <?php
+  require 'config/DB.php';
+  $query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE()  ORDER BY tanggal_pesan DESC");
+  //data di layanan
+  $data = mysqli_query($connection,"SELECT * FROM layanan");
+  // data update
 
   $i = 1;
    foreach($query as $row):?>
@@ -31,7 +28,7 @@ $data = mysqli_query($connection,"SELECT * FROM layanan");
      
     </tr>
     <?php endforeach;?>
-   
+
   
 
 

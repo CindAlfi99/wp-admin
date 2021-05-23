@@ -6,23 +6,10 @@ require 'config/DB.php';
 $perintahQuery = mysqli_query($connection,"SELECT order_masuk.id_order,order_masuk.alamat_jemput,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jumlah,order_masuk.tanggal_pesan,order_masuk.total_bayar,order_masuk.tanggal_selesai,order_masuk.status_cucian, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item ORDER BY tanggal_pesan ASC");
 
 $html = '
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  
-  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css"/> 
-  
-  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css"/>
-  <style>
-  table, td,th{
-    border: 1px solid black;
-  }
-  </style>
-</head>
-<body>
+<?php require "template/header.php";?>
+<body id="page-top">
 <center> <h1>Laporan Rumah Laundry Seluruh Data</h1></center>
 <br>
 Dicetak :'.date('l, d-m-Y');
@@ -62,7 +49,7 @@ $html.=
   };
   $html .='
 </table>
-<img width="100" src="ttd.jpg" style="margin-left:80%; margin-top:5%"><h5 style="margin-left:75%">Admin</h5>
+<img width="100" src="<?= BASE_URL?>asset/img/ttd.jpg" style="margin-left:80%; margin-top:5%"><h5 style="margin-left:75%">Admin Rumah Laundry 381</h5>
 </body>
 </html>
 ';

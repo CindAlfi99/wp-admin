@@ -1,5 +1,5 @@
 
-</body>
+
 <footer class="sticky-footer bg-white bottom">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -154,8 +154,28 @@ channel.bind('my-event', function(data) {
   
 $.ajax({url: "pusher_cust.php", success: function(result){
  
-    $("#div1").html("");
-    $("#div1").append(result);
+    $("#hy").html("");
+    $("#hy").append(result);
+    
+  }});
+});
+</script>
+<script>
+
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('ee0a2d4a7d1a6c8ef4f8', {
+  cluster: 'ap1'
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+  
+$.ajax({url: "pusher_order.php", success: function(result){
+ 
+    $("#order").html("");
+    $("#order").append(result);
     
   }});
 });
@@ -163,4 +183,4 @@ $.ajax({url: "pusher_cust.php", success: function(result){
 
 
 
-</html>
+

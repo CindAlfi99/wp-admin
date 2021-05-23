@@ -1,34 +1,6 @@
-
-<!doctype html>
-<html lang="en">
-<?php require 'template/header.php';?>
-<body id="page-top">
-<?php require 'template/navbar.php';?>
-<div class="container scroll">
-
-  
-  <div class="row">
-    <h5 class="ml-3">Data Order</h5>
-    <div class="col-md-12">
-      <div id="container">
-        <table class="table table-striped text-center table-hover" id="order">
-          <thead>
-            <tr>
-              <th scope="col">No</th>
-              <th scope="col">Nomor Resi</th>
-              <th scope="col">Tanggal Masuk</th>
-              <th scope="col">Nama Pelanggan</th>
-              <th scope="col">Total Pembayaran</th>
-              <th scope="col">Tanggal Selesai</th>
-              <th scope="col">Status Cucian</th>
-              <th scope="col">Proses</th>
-              <th scope="col">Status Pembayaran</th>
-            </tr>
-          </thead>
-          <tbody id="order">
-          <?php 
-
-$query = mysqli_query($connection, "SELECT * FROM order_masuk");
+<?php 
+  require 'config/DB.php';
+$query = mysqli_query($connection, "SELECT * FROM order_masuk ORDER BY tanggal_pesan DESC");
 
 ?>
             <?php
@@ -70,13 +42,3 @@ $query = mysqli_query($connection, "SELECT * FROM order_masuk");
                
                  </tr>
                  <?php endwhile; ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<?php require 'template/footer.php'; ?>
-</body>
-</html>

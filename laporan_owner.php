@@ -14,7 +14,11 @@ if(isset($_POST['filter_date'])){
 $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
 
  ?>
- 
+ <!doctype html>
+<html lang="en">
+<?php require 'template/header.php';?>
+<body id="page-top">
+<div class="container mt-2"><hr>
 <h1><b>Laporan RL381</b></h1>
 
 
@@ -152,5 +156,7 @@ $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
     </div>
   </div>
 </div>
-
- <?php require 'template/footer.php';?>
+<?php require 'template/footer.php';?>
+</div>
+            </body>
+</html>

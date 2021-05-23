@@ -1,4 +1,21 @@
-<?php require 'template/header.php';
+
+ 
+
+
+<!doctype html>
+<html lang="en">
+<?php require 'template/header.php';?>
+<body id="page-top">
+<?php require 'template/navbar.php';?>
+<div class="container scroll">
+
+
+<div class="container">
+
+
+<!-- search -->
+<div class="row">
+<?php 
 // require 'functions.php';
 
 $query = mysqli_query($connection, "SELECT * FROM order_masuk");
@@ -13,12 +30,7 @@ if(isset($_POST['filter_date'])){
 $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
 
  ?>
- 
 <h1><b>Laporan RL381</b></h1>
-
-
-<div class="container scroll">
-<div class="row ">
 <form action="" method="post">
 
 <div class="form-row">
@@ -40,16 +52,18 @@ $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
     </div>
 <div class="row mt-2">
 <!-- tombol hari ini -->
-<button href="cetak_laporan_today.php" class="col-2 d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-30"></i>Cetak Hari Ini</button>
 <?php if(!isset($_POST['filter_date'])):?>
-<a href="cetak_laporan_all.php" class=" ml-2 col-2 d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-30"></i>Cetak Semua </a>
+<a href="cetak_laporan_today.php" class="col-5  btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-30"></i>Cetak Hari Ini</a>
+<?php endif;?>
+<?php if(!isset($_POST['filter_date'])):?>
+<a href="cetak_laporan_all.php" class=" ml-2 col-2 col-5  btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-30"></i>Cetak Semua </a>
  <?php endif;?>
 <?php if(isset($_POST['filter_date'])):
   $form_date = $_POST['form_date'];
   $to_date = $_POST['to_date'];?>
-<a href="cetak_laporan.php?tanggal_pesan=<?=$form_date?>&to_date=<?=$to_date?>" class=" ml-3 mb-2 mb-3 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak</a>
+<a href="cetak_laporan.php?tanggal_pesan=<?=$form_date?>&to_date=<?=$to_date?>" class=" ml-3 mb-2 mb-3 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak Data</a>
  <?php endif;?>
-<table class="table table-striped text-center mt-5" id="laporan">
+<table class="table table-striped text-center mt-3" id="laporan">
           <thead>
             <tr>
               <th scope="col">No</th>
@@ -137,11 +151,7 @@ $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
     <label for="tgl_selesai">Tanggal Selesai</label>
     <input type="text" class="form-control" name="tgl_selesai" id="tgl_selesai" aria-describedby="emailHelp">
   </div>
-  <!-- <div class="form-group">
-    <label for="nama_pemesan">Nomor Pemesan </label>
-    <input type="text" class="form-control" name="nama_pemesan" value="<?= $q['nama_pemesan']?>" aria-describedby="emailHelp">
-    
-  </div> -->
+  
         
       </div>
       <div class="modal-footer">
@@ -153,3 +163,5 @@ $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
 </div>
 
  <?php require 'template/footer.php';?>
+ </body>
+</html>

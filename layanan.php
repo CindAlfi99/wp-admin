@@ -1,5 +1,43 @@
-<?php 
- require 'template/header.php';
+
+<!doctype html>
+<html lang="en">
+<?php require 'template/header.php';?>
+<body id="page-top">
+<?php require 'template/navbar.php';?>
+<div class="container scroll">
+
+
+<div class="container">
+<!-- search -->
+<!-- <div class="row">
+<div class="col-md-5">
+<div class="form-group mb-3">
+    <input type="text" class="form-control" id="carilayanan" placeholder="cari..." autofocus autocomplete="off">
+  </div>
+</div></div> -->
+<div class="row">
+<div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
+  Tambah data
+</button></div></div>
+<div class="row">
+<h5 class="ml-3 mb-3 "><b>Daftar Layanan Rumah Laundry 381</b></h5>
+<div class="col-md-12">
+<div class="containe" id="containew">
+<table class="table table-striped text-center" id="layanan">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Jenis Item</th>
+      <th scope="col">Jenis Layanan</th>
+      <th scope="col">Satuan</th>
+      <th scope="col">Harga</th>
+      <th scope="col">Opsi</th>
+    </tr>
+   
+  </thead>
+  <tbody>
+  <?php 
+ 
 require 'functions.php';
 // data hari ini
 $query = mysqli_query($connection, "SELECT * FROM layanan ORDER BY jenis_item ASC");
@@ -32,36 +70,6 @@ if(isset($_POST['tambah'])){
 }
 ?>
 
-
-<div class="container">
-<!-- search -->
-<div class="row">
-<div class="col-md-5">
-<div class="form-group mb-3">
-    <input type="text" class="form-control" id="carilayanan" placeholder="cari..." autofocus autocomplete="off">
-  </div>
-</div></div>
-<div class="row">
-<div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
-  Tambah data
-</button></div></div>
-<div class="row">
-<h5 class="ml-3 mb-3 mt-4"><b>Daftar Layanan Rumah Laundry 381</b></h5>
-<div class="col-md-12">
-<div class="containe" id="containew">
-<table class="table table-striped text-center" id="layanan">
-  <thead>
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">Jenis Item</th>
-      <th scope="col">Jenis Layanan</th>
-      <th scope="col">Satuan</th>
-      <th scope="col">Harga</th>
-      <th scope="col">Opsi</th>
-    </tr>
-   
-  </thead>
-  <tbody>
   <?php
   $i = 1;
    foreach($query as $row):?>
@@ -71,8 +79,8 @@ if(isset($_POST['tambah'])){
       <td><?=$row['jenis_layanan'];?></td>
       <td><?=$row['satuan'];?></td>
       <th><?=$row['harga'];?></th>
-      <th><a type="submit" class="btn btn-primary" id="tombolUbah"data-id="<?= $row['id']?>" data-nama="<?= $row['nama_pemesan']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
-      <a class="btn btn-primary" href="hapus.php?id=<?= $row['id'];?>" onclick="return confirm('Confirm');">Hapus</a>
+      <th><a type="submit" class="btn btn-primary" id="tombolUbah"data-id="<?= $row['id_layanan']?>" data-nama="<?= $row['nama_pemesan']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
+      <a class="btn btn-primary" href="hapus_layanan.php?id=<?= $row['id_layanan'];?>" onclick="return confirm('Yakin');">Hapus</a>
       </th>
       <?php endforeach;?>
     </tr>
@@ -197,4 +205,6 @@ if(isset($_POST['tambah'])){
   </div>
 </div>
 
- <?php require 'template/footer.php';?>
+<?php require 'template/footer.php'; ?>
+</body>
+</html>

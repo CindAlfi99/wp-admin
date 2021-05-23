@@ -1,5 +1,13 @@
 
-<?php require 'template/header.php';
+  <!-- alert ubah -->
+  
+<!doctype html>
+<html lang="en">
+<?php require 'template/header.php';?>
+<body id="page-top">
+<?php require 'template/navbar.php';?>
+
+<?php 
 
 $query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE() AND status_cucian ='antar'");
 $count = mysqli_num_rows($query); 
@@ -9,7 +17,7 @@ $c_cust = mysqli_num_rows($total_cust);
 $penghsl= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_pembayaran ='lunas'");
 
   ?>
-  <!-- alert ubah -->
+  
   <?php if($_SESSION['role']==='admin'):?>
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   <strong>Berhasil Login!</strong>
@@ -18,8 +26,10 @@ $penghsl= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_pemb
   </button>
 </div>
 <?php endif; ?>
-  <!-- menu 
-  -->
+<?php if($_SESSION['role']==='admin'):?>
+<div></div>
+<?php endif; ?>
+  
                 <div class="container-fluid">
                 
                     <!-- header -->
@@ -131,4 +141,7 @@ $total += $row['total_bayar'];
             
             <!-- Footer -->
             <?php require 'template/footer.php';?>
+            </body>
+</html>
+
             

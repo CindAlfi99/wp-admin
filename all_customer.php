@@ -1,3 +1,15 @@
+
+
+<!doctype html>
+<html lang="en">
+<?php require 'template/header.php';?>
+<body id="page-top">
+<?php require 'template/navbar.php';?>
+<div class="container scroll">
+<?php require 'template/header.php';?>
+<div class="container scroll">
+<!-- search -->
+<div class="row">
 <?php require 'template/header.php';
 require 'functions.php';
 // data seluruh konsumen yang belum selesai
@@ -13,25 +25,7 @@ $alert_gagal = true;
  
   }
 }
-
-
-// if(isset($_POST['tambah'])){
-//   if(tambahProduk($_POST) > 0){
-//     echo "<script> alert('Data berhasil diubah');
-//     document.location.href ='customer.php'; </script>";
-//   }else{
-
-//     echo "<script> alert('Data gagal diubah!');
-//     document.location.href ='customer.php'; </script>";
- 
-//   }
-// }
 ?>
-
-
-<div class="container scroll">
-<!-- search -->
-<div class="row">
 <div class="col-md-5">
 <!-- alert simpan -->
 <div class="alert alert-success alert-dismissible fade" role="alert">
@@ -70,7 +64,7 @@ $alert_gagal = true;
 </button></div>
 <div class="col-md-12 text-right"><a href="#" onclick="window.location.reload();"> Segarkan Halaman </a></div></div>
 <div class="row">
-<h5 class="ml-3 mb-3">Data Konsumen Hari Ini</h5>
+<h5 class="ml-3 mb-3">Semua konsumen yg sedang di proses</h5>
 <div class="col-md-12">
 <div class="containe" id="containers">
 <table class="table table-striped text-center" id="cust">
@@ -341,3 +335,5 @@ $alert_gagal = true;
 
 
  <?php require 'template/footer.php';?>
+ </body>
+</html>

@@ -28,51 +28,12 @@ $count;
     
 
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Dashboard</title>
-<style>
-.scroll{
-    margin: 4px, 4px;
-                padding: 4px;
-            
-                width: 300px;
-                overflow-x: auto;
-                overflow-y: hidden;
-                white-space: nowrap;
-}
-
-</style>
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css"/> -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css"/> -->
-    
- 
-   
- 
-    
-
-</head>
-
+<?php require 'template/header.php';?>
 <body id="page-top">
+
+
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -181,20 +142,7 @@ $count;
                                 </form>
                             </div>
                         </li>
-                      
-                        <!-- Nav Item - Alerts -->
-                        <!-- <div class="dropdown">
-  <i class="fa fa-bell mt-4" aria-hidden="true" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
- <span class="text-danger"> <?= $count;?></span>
-  </i>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-  
-  <?php while($row = mysqli_fetch_assoc($query)):?>
-    <button class="dropdown-item" type="button"><i class="far fa-user"></i> Konsumen : <?= $row['nama_pemesan'];?><br>Layanan : <span class="text-danger"><?= $row['jenis_layanan'];?></span><br> Jumlah: <?= $row['jumlah'] ?></button>
-   <?php endwhile;?>
-    
-  </div>
-</div> -->
+                  
                         
 
 
@@ -215,14 +163,7 @@ $count;
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
+                                
                                 <div class="dropdown-divider"></div>
                                 <!-- data-toggle="modal" data-target="#logoutModal" -->
                                 <a class="dropdown-item" href="<?= BASE_URL?>/logout.php" >

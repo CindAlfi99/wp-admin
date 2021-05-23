@@ -15,6 +15,8 @@ if(isset($_POST['submit'])){
 if(mysqli_num_rows($adm) > 0){
    $_SESSION['role'] = 'admin';
    $_SESSION['nama'] = "$nama";
+   
+   
 
     header("Location: admin.php");
 }else if(mysqli_num_rows($owner) > 0){

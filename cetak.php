@@ -1,7 +1,7 @@
 <?php
 $no_resi = $_GET['no_resi'];
-require '../asset/vendor_pdf/vendor/autoload.php';
-require '../config/DB.php';
+require 'asset/vendor_pdf/vendor/autoload.php';
+require 'config/DB.php';
 $query =  mysqli_query($connection, "SELECT DISTINCT no_resi, alamat_jemput,nama_pemesan,tanggal_pesan,tanggal_selesai FROM order_masuk WHERE no_resi = $no_resi");
 $perintahQuery = mysqli_query($connection,"SELECT order_masuk.id, order_masuk.jenis_layanan, order_masuk.jenis_item, order_masuk.jumlah,order_masuk.ongkir, order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE order_masuk.no_resi = $no_resi ");
 $join_tbl = mysqli_fetch_assoc($query);
