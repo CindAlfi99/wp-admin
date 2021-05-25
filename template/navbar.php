@@ -158,35 +158,21 @@ $count = mysqli_num_rows($query);
                         </form>
                     </div>
                 </li>
-                <!-- welcome -->
-                <!-- <div class="row">
-                    <div class="col-md-12 float-left">
-                        <h3>Welcome, Admin Rumah Laundry 381</h3>
-                    </div>
-                </div> -->
-                <!-- batas -->
-
-                <!-- Nav Item - Alerts -->
+<!-- dropdown -->
              
-                <div class="dropdown" id="div1" >
-                <i class="fa fa-bell mt-4" aria-hidden="true"  id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<span class="text-danger"> <?= $count;?></span>
-</i>
-<div  class="dropdown-menu" aria-labelledby="dropdownMenu2" >
+ <div class="dropdown" id="div1" >
+     <i class="fa fa-bell mt-4" aria-hidden="true"  id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="text-danger"> <?= $count;?></span></i>
 
-<?php 
-$i =1;while($row = mysqli_fetch_assoc($query)):?>i
-<a class="dropdown-item"  type="button"><?= $i++;?>. <i class="far fa-user"></i> Konsumen : <?= $row['nama_pemesan'];?><br>Layanan : <span class="text-danger"><?= $row['jenis_layanan'];?></span><br><span>Time <?= $row['tanggal_pesan'];?><br></span><br> Jumlah: <?= $row['jumlah'] ?></a>
-<?php endwhile;?>
+    <div  class="dropdown-menu" aria-labelledby="dropdownMenu2">
+       <?php $i =1;while($row = mysqli_fetch_assoc($query)):?>i
+         <a class="dropdown-item"  type="button"><?= $i++;?>. <i class="far fa-user"></i> Konsumen : <?= $row['nama_pemesan'];?><br>Layanan : <span class="text-danger"><?= $row['jenis_layanan'];?></span><br><span>Time <?= $row['tanggal_pesan'];?><br></span><br> Jumlah: <?= $row['jumlah'] ?></a>
+        <?php endwhile;?>
+    </div>
 
 </div>
-</div>
+<!-- batas -->
 
-                
-
-
-
-                <!-- Nav Item - User Information -->
+                  <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
