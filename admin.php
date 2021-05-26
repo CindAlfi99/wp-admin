@@ -14,22 +14,12 @@ $count = mysqli_num_rows($query);
 $count;
 $total_cust= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian !='antar'");
 $c_cust = mysqli_num_rows($total_cust);
-$penghsl= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_pembayaran ='lunas'");
+$total_cust_today= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian ='antar' OR status_cucian ='selesai'");
+$total_today= mysqli_num_rows($total_cust_today);
+$penghsl= mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE() AND status_pembayaran ='lunas'");
 
   ?>
-  
-  <?php if($_SESSION['role']==='admin'):?>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Berhasil Login!</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<?php endif; ?>
-<?php if($_SESSION['role']==='admin'):?>
-<div></div>
-<?php endif; ?>
-  
+
                 <div class="container-fluid">
                 
                     <!-- header -->
@@ -78,7 +68,7 @@ $penghsl= mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_pemb
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Total Costumer</div>
+                                                Total Costumer Masih Dalam Proses</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $c_cust; ?></div>
                                         </div>
                                         <div class="col-auto">
@@ -119,8 +109,8 @@ $total += $row['total_bayar'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Total Customer Hari ini</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?=$total_today; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
