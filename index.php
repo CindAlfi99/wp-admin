@@ -75,7 +75,7 @@ else{
                             <div class="col-lg">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4 "><b>Welcome Admin RL381</b></h1>
+                                        <h1 class="h4 text-gray-900 mb-4 "><b>Welcome Admin|Owner RL381</b></h1>
                                     </div>
                                     <div class="text-center">
                                         <img width="150" height="60" src="<?= ROOT;?>asset/img/logo.jpg" alt="">

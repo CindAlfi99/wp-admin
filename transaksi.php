@@ -1,11 +1,17 @@
-<?php require 'template/header.php';
+ <?php 
+// require 'config/DB.php';
 $no_resi = $_GET['no_resi'];
 // if(!$_GET['no_resi'] || $_GET['no_resi']===''){
 //   header("Location: order.php");
 //   exit;
 // }
 ?>
-<div class="container ml-4" style="margin-bottom:150px">
+<!doctype html>
+<html lang="en">
+<?php require 'template/header.php';?>
+<body id="page-top">
+<?php require 'template/navbar.php';?>
+<div class="container ml-4 mt-5" style="margin-bottom:150px">
 
 
 <?php 
@@ -84,10 +90,10 @@ $total = $row['harga'] * $row['jumlah'] + $row['ongkir'];?>
 <!-- transaksi -->
 <p class="text-end float-right mr-5"><strong>Jumlah</strong>: <?= $count; ?></p>
 <?php if($q['mode']==='online'):?>
-  <a href="cetak_payments.php?no_resi=<?= $q['no_resi'] ?>&status_cucian=antar" class="btn btn-info mb-2 col-md-2 ml-3">Cetak</a>
+  <a href="cetak_payments.php?no_resi=<?= $q['no_resi'] ?>&status_cucian=antar"target="_blank" class="btn btn-info mb-2 col-md-2 ml-3">Cetak</a>
   <?php endif?>
   <?php if($q['mode']==='offline'):?>
-  <a href="cetak_payments.php?no_resi=<?= $q['no_resi'] ?>&status_cucians=diambil" class="btn btn-info mb-2 col-md-2 ml-3">Cetak</a>
+  <a href="cetak_payments.php?no_resi=<?= $q['no_resi'] ?>&status_cucians=diambil"target="_blank" class="btn btn-info mb-2 col-md-2 ml-3">Cetak</a>
   <?php endif?>
 
 </form>
@@ -95,3 +101,5 @@ $total = $row['harga'] * $row['jumlah'] + $row['ongkir'];?>
 </div>
 
  <?php require 'template/footer.php';?>
+ </body>
+ </html>

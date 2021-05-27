@@ -53,7 +53,7 @@ $count;
             <hr class="sidebar-divider">
   <!-- Heading -->
   <div class="sidebar-heading admin">
-                Administrator
+                Owner
             </div>
             <!-- Nav Item - Dashboard -->
             <!-- <li class="nav-item active">

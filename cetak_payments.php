@@ -1,5 +1,6 @@
 <?php
 $no_resi = $_GET['no_resi'];
+
 require 'asset/vendor_pdf/vendor/autoload.php';
 require 'config/DB.php';
 $query =  mysqli_query($connection, "SELECT DISTINCT no_resi, alamat_jemput, nama_pemesan, status_cucian,status_pembayaran,mode,tanggal_pesan,tanggal_selesai FROM order_masuk WHERE no_resi = $no_resi");
@@ -24,9 +25,9 @@ elseif(isset($_GET['status_cucians'])){
     $query =mysqli_query($connection, "UPDATE order_masuk SET status_cucian='diambil' WHERE no_resi=$no_resi");
 
 }
-else{
-    die('Invalid query: ' . mysqli_error($connection));
-}?>
+// else{
+//     die('Invalid query: ' . mysqli_error($connection));
+// }?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -233,8 +234,14 @@ hr {
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Tanggal Pesan :</span> <?= $join_tbl["tanggal_pesan"]?></div>
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Tanggal Selesai :</span> <?= $join_tbl["tanggal_selesai"]?></div>
+                            <?php if(isset($_GET['proses'])):
+                                $proses = $_GET['proses'];?>
+                                
+                             
+                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status Cucian :</span> <?= $proses;?></div>
+                                <?php else:?>
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status Cucian :</span> <?= $join_tbl["status_cucian"]?></div>
-
+<?php endif;?>
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status Pembayaran:</span> <span class="badge badge-warning badge-pill px-25"><?= $join_tbl["status_pembayaran"]?></span></div>
                         </div>
                     </div>

@@ -23,6 +23,7 @@
               <th scope="col">Status Cucian</th>
               <th scope="col">Proses</th>
               <th scope="col">Status Pembayaran</th>
+              <th scope="col">Opsi</th>
             </tr>
           </thead>
           <tbody id="order">
@@ -68,8 +69,16 @@ $query = mysqli_query($connection, "SELECT * FROM order_masuk");
                  
                  <?php endif?></td>
                
+                 <td>
+                 <?php if ($row['mode'] === 'offline'):?>
+      
+                 <a href="cetak_payments.php?no_resi=<?= $row['no_resi']?>&proses=proses" class="btn btn-primary">Cetak</a>
+                 <?php else:?>
+                  <a href="#"></a>
+                 <?php endif; ?>
+                 </td>
                  </tr>
-                 <?php endwhile; ?>
+                 <?php endwhile;?>
           </tbody>
         </table>
       </div>
