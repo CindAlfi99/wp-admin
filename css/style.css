@@ -1,6 +1,4 @@
-.items{
-    
+.notification-container {
     max-height: 350px;
-    overflow-y: auto;
-  
+    overflow-y: auto !important;
 }
