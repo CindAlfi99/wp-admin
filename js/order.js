@@ -48,8 +48,6 @@ function order(e) {
     console.log(data)
     formOrder.reset()
     
-    $('#modalTambah').modal('hide')
- 
     $(".alert").addClass("show")
     $('.alert').alert()
     

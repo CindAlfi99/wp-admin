@@ -16,11 +16,12 @@ $data = mysqli_query($connection,"SELECT * FROM layanan");
 if(isset($_POST['ubah'])){
  
   if(ubahProduk($_POST) > 0){
-    // echo "<script> 
-    // document.location.href ='customer.php'; </script>";
-    $alert_ubah = true;
+    echo "<script>alert('data konsumen berhasil diubah');
+    window.location.href ='customer.php'; </script>";
+    // $alert_ubah = true;
   }else{
-$alert_gagal = true;
+    echo "<script>alert('data gagal diubah');
+    window.location.href ='customer.php'; </script>";
  
   }
 }
@@ -33,17 +34,12 @@ $alert_gagal = true;
 
 
 
-// if(isset($_POST['tambah'])){
-//   if(tambahProduk($_POST) > 0){
-//     echo "<script> alert('Data berhasil diubah');
-//     document.location.href ='customer.php'; </script>";
-//   }else{
+if(isset($_POST['tambah'])){
 
-//     echo "<script> alert('Data gagal diubah!');
-//     document.location.href ='customer.php'; </script>";
- 
-//   }
-// }
+    echo "<script> alert('Data berhasil ditambah');
+    document.location.href ='customer.php'; </script>";
+}
+
 ?>
 <!-- search -->
 <div class="row">
@@ -51,7 +47,7 @@ $alert_gagal = true;
 <!-- alert simpan -->
 <div class="alert alert-success alert-dismissible fade" role="alert">
   <strong>Berhasil disimpan!</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="return window.location.href='customer.php'">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -273,7 +269,7 @@ $alert_gagal = true;
           </div>
         </div>
 
-        <input type="submit"  value="Order Sekarang" class="btn btn-primary">
+        <input type="submit" name="tambah" value="Order Sekarang" class="btn btn-primary">
       </form>
     
       </div>
