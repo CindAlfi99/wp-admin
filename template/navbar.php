@@ -160,9 +160,10 @@ $count = mysqli_num_rows($query);
                 </li>
 <!-- dropdown -->
              
- <div class="dropdown" id="div1" >
+<div class="dropdown" id="div1" >
     <li class="nav-item dropdown no-arrow mx-1 show">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                         
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter"><?=$count;?>+</span>
@@ -172,6 +173,7 @@ $count = mysqli_num_rows($query);
                                 <h6 class="dropdown-header">
                                     Notifikasi
                                 </h6>
+                           
                                 <?php $i =1;
                                 while($row = mysqli_fetch_assoc($query)):?>i
                                 <a class="dropdown-item items d-flex align-items-center" href="#">
