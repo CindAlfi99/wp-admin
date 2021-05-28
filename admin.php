@@ -7,12 +7,12 @@
 
     <?php
 
-    $query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE() AND status_cucian ='antar'");
+    $query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE()");
     $count = mysqli_num_rows($query);
     $count;
     $total_cust = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian !='antar'");
     $c_cust = mysqli_num_rows($total_cust);
-    $total_cust_today = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian ='antar' OR status_cucian ='selesai'");
+    $total_cust_today = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian ='antar' OR status_cucian ='diambil'");
     $total_today = mysqli_num_rows($total_cust_today);
     $penghsl = mysqli_query($connection, "SELECT * FROM order_masuk WHERE DATE(tanggal_pesan) = CURDATE() AND status_pembayaran ='lunas'");
 
@@ -48,7 +48,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Total Pesan Hari Ini</div>
+                                    Total Customer Hari Ini</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $count ?></div>
                             </div>
                             <div class="col-auto">
@@ -66,7 +66,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Total Costumer Masih Dalam Proses</div>
+                                    Total Customer Dalam Proses</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $c_cust; ?></div>
                             </div>
                             <div class="col-auto">
@@ -88,7 +88,7 @@
                                     while ($row = mysqli_fetch_assoc($penghsl)) {
                                         $total += $row['total_bayar'];
                                     } ?>
-                                    Total Penghasilan Hari ini</div>
+                                    Total Pendapatam Hari ini</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total; ?></div>
                             </div>
                             <div class="col-auto">
@@ -107,7 +107,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Total Customer Hari ini</div>
+                                    Total Customer Selesai</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $total_today; ?></div>
                             </div>
                             <div class="col-auto">
