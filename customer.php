@@ -84,7 +84,8 @@ if(isset($_POST['tambah'])){
 <div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
   Tambah data
 </button></div>
-<div class="col-md-12 text-right"><a href="#" onclick="window.location.reload();"> Segarkan Halaman </a></div></div>
+<!-- <div class="col-md-12 text-right"><a href="#" onclick="window.location.reload();"> Segarkan Halaman </a></div> -->
+</div>
 <div class="row">
 <h5 class="ml-3 mb-3">Data Konsumen Hari Ini</h5>
 <div class="col-md-12">

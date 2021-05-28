@@ -30,7 +30,7 @@ if(isset($_POST['filter_date'])){
 $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
 
  ?>
-<h1><b>Laporan RL381</b></h1>
+<h1><b>Laporan RL381</b></h1><br>
 <form action="" method="post">
 
 <div class="form-row">
@@ -61,7 +61,7 @@ $querys = mysqli_query($connection, "SELECT * FROM order_masuk");
 <?php if(isset($_POST['filter_date'])):
   $form_date = $_POST['form_date'];
   $to_date = $_POST['to_date'];?>
-<a href="cetak_laporan.php?tanggal_pesan=<?=$form_date?>&to_date=<?=$to_date?>" class=" ml-3 mb-2 mb-3 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak Data</a>
+<a href="cetak_laporan.php?tanggal_pesan=<?=$form_date?>&to_date=<?=$to_date?>" class=" ml-3 mb-2 mb-3  d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>Cetak Data</a>
  <?php endif;?>
 <table class="table table-striped text-center mt-3" id="laporan">
           <thead>

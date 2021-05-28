@@ -15,6 +15,7 @@ $count = mysqli_num_rows($query);
                                 <h6 class="dropdown-header">
                                     Notifikasi
                                 </h6>
+                                <div class="notification-container">
                            
                                 <?php $i =1;
                                 while($row = mysqli_fetch_assoc($query)):?>i
@@ -30,6 +31,7 @@ $count = mysqli_num_rows($query);
                                     </div>
                                 </a>
                                 <?php endwhile;?>
+                                </div>
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>

@@ -49,7 +49,9 @@ $html.=
   };
   $html .='
 </table>
-<img width="100" src="<?= BASE_URL?>asset/img/ttd.jpg" style="margin-left:80%; margin-top:5%"><h5 style="margin-left:75%">Admin Rumah Laundry 381</h5>
+<p style="margin-left:70%; margin-top:5%">Palembang,';
+
+$html .= date(' d-m-Y').'</p><h5 style="margin-left:76%">Admin RL381</h5>
 </body>
 </html>
 ';

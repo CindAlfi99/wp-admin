@@ -24,6 +24,8 @@ function ubahLayanan($data){
     $item = $data['jenis_item'];
     $satuan = $data['satuan'];
     $harga = $data['harga'];
+    $pesan = $data['pesan'];
+    $selesai = $data['selesai'];
     mysqli_query($conn, "UPDATE layanan SET jenis_layanan = '$layanan', jenis_item = '$item',satuan = '$satuan',harga = '$harga' WHERE id_layanan = $id");
     return mysqli_affected_rows($conn);
 }

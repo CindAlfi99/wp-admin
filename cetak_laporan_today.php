@@ -3,7 +3,7 @@
 require 'asset/vendor_pdf/vendor/autoload.php';
 require 'config/DB.php';
 
-$perintahQuery = mysqli_query($connection,"SELECT order_masuk.id_order,order_masuk.alamat_jemput,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jumlah,order_masuk.tanggal_pesan,order_masuk.total_bayar,order_masuk.tanggal_selesai,order_masuk.status, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE DATE(tanggal_pesan) = CURDATE() ORDER BY tanggal_pesan ASC");
+$perintahQuery = mysqli_query($connection,"SELECT order_masuk.id_order,order_masuk.alamat_jemput,order_masuk.no_resi, order_masuk.nama_pemesan, order_masuk.jenis_layanan, order_masuk.jumlah,order_masuk.tanggal_pesan,order_masuk.total_bayar,order_masuk.tanggal_selesai,order_masuk.status_cucian, layanan.jenis_item, layanan.satuan, layanan.harga FROM order_masuk JOIN layanan ON order_masuk.jenis_item = layanan.jenis_item WHERE DATE(tanggal_pesan) = CURDATE() ORDER BY tanggal_pesan ASC");
 
 $html = '
 <!doctype html>
@@ -13,10 +13,10 @@ $html = '
 <center> <h1>Laporan Rumah Laundry Seluruh Data</h1></center>
 <br>
 Dicetak :'.date('l, d-m-Y');
+if(mysqli_num_rows($perintahQuery) > 1){
+  $html.='<p>Laporan Konsumen Hari ini</p>';
 
-  $html.='<p>Laporan Harian</p>';
-
-
+}
 $html.='<table  cellpadding="7" cellspacing="0">
 <tr>
 <th>No</th>
@@ -26,7 +26,7 @@ $html.='<table  cellpadding="7" cellspacing="0">
 <th>Total Bayar</th>
 <th>Selesai</th>
 <th>Jenis Layanan</th>
-<th>Status</th>
+<th>Status Cucian</th>
 
 
 </tr>';
@@ -49,7 +49,9 @@ $html.=
   };
   $html .='
 </table>
-<img width="100" src="<?= BASE_URL?>asset/img/ttd.jpg" style="margin-left:80%; margin-top:5%"><h5 style="margin-left:75%">Admin Rumah Laundry 381</h5>
+<p style="margin-left:70%; margin-top:5%">Palembang,';
+
+$html .= date(' d-m-Y').'</p><h5 style="margin-left:76%">Admin RL381</h5>
 </body>
 </html>
 ';
@@ -60,5 +62,7 @@ $mpdf = new \Mpdf\Mpdf();
 $mpdf->WriteHTML($html);
 $mpdf->Output();
 ?>
+
+  
 
   

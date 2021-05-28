@@ -197,7 +197,7 @@ hr {
             </small><br>
             <small class="page-info">
                 <!-- <i class="fa fa-angle-double-right text-80"></i> -->
-               0732-3095-234
+               0896-8230-2117
             </small>
                         </div>
                     </div>
@@ -334,7 +334,7 @@ hr {
     </div>
 </div>
 <!-- button kembali -->
-<a href="admin.php" class="btn btn-primary mt-3 col-1 col-3 float-right mr-5 mb-5">Kembali</a>
+<a href="admin.php" class="btn btn-primary mt-3 col-2 float-right mr-5 mb-5 hidden-print">Kembali</a>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

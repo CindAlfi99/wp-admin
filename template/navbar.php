@@ -142,7 +142,7 @@ $count = mysqli_num_rows($query);
                         </div>
                     </li>
                     <!-- Nav Item - Alerts -->
-
+<div id="div1">
                     <li class="nav-item dropdown no-arrow mx-1 show">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <i class="fas fa-bell fa-fw"></i>
@@ -174,6 +174,7 @@ $count = mysqli_num_rows($query);
                             </div>
                         </div>
                     </li>
+                    </div>
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -15,12 +15,13 @@
     <input type="text" class="form-control" id="carilayanan" placeholder="cari..." autofocus autocomplete="off">
   </div>
 </div></div> -->
-<div class="row">
-<div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
-  Tambah data
-</button></div></div>
+
 <div class="row">
 <h5 class="ml-3 mb-3 "><b>Daftar Layanan Rumah Laundry 381</b></h5>
+
+<div class="col-md-12 mb-2" style=""><button type="button float-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
+  Tambah data
+</button></div>
 <div class="col-md-12">
 <div class="containe" id="containew">
 <table class="table table-striped text-center" id="layanan">
@@ -72,18 +73,19 @@ if(isset($_POST['tambah'])){
 
   <?php
   $i = 1;
-   foreach($query as $row):?>
+   while($row = mysqli_fetch_assoc($query)):?>
     <tr>
       <th scope="row"><?= $i++;?></th>
       <td><?=$row['jenis_item'];?></td>
       <td><?=$row['jenis_layanan'];?></td>
       <td><?=$row['satuan'];?></td>
       <th><?=$row['harga'];?></th>
-      <th><a type="submit" class="btn btn-primary" id="tombolUbah"data-id="<?= $row['id_layanan']?>" data-nama="<?= $row['nama_pemesan']?>" data-wa="<?= $row['no_wa']?>" data-alamat="<?= $row['alamat_jemput']?>" data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-pesan="<?= $row['tanggal_pesan']?>" data-selesai="<?= $row['tanggal_selesai']?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
+      <th><a  href="#" class="btn btn-primary" id="tombolUbah"data-id="<?= $row['id_layanan']?>"  data-layanan="<?= $row['jenis_layanan']?>" data-item="<?= $row['jenis_item']?>" data-harga="<?= $row['harga'];?>" height="50px" data-toggle="modal" data-target="#edit"> Edit</a> <br>
       <a class="btn btn-primary" href="hapus_layanan.php?id=<?= $row['id_layanan'];?>" onclick="return confirm('Yakin');">Hapus</a>
       </th>
-      <?php endforeach;?>
+    
     </tr>
+    <?php endwhile;?>
   
   </tbody>
 </table>
@@ -98,7 +100,7 @@ if(isset($_POST['tambah'])){
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Ubah Data</h3>
+        <h3 class="modal-title" id="exampleModalLabel">Ubah Data Layanan</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -156,7 +158,7 @@ if(isset($_POST['tambah'])){
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Tambah Data</h3>
+        <h3 class="modal-title" id="exampleModalLabel">Tambah Data Layanan</h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

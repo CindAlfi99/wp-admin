@@ -61,8 +61,8 @@ if (isset($_POST['submit'])) {
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4 "><b>Welcome Admin|Owner RL381</b></h1>
                                     </div>
-                                    <div class="text-center">
-                                        <img width="150" height="60" src="<?= BASE_URL; ?>asset/img/logo.jpg" alt="">
+                                    <div class="text-center mb-3">
+                                        <img width="130" height="50" src="<?= BASE_URL; ?>/asset/img/logoo.png" alt="">
                                     </div>
                                     <?php if (isset($error)) : ?>
                                         <p style="color:red; font-style:italic;"><b>Username / Password Salah</b></p>
