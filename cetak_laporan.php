@@ -12,7 +12,7 @@ $html ='
 <html lang="en">
 <?php require "template/header.php";?>
 <body id="page-top">
-<center> <h1>Laporan Rumah Laundry</h1></center>
+<center> <h1>Laporan Rumah Laundry 381</h1></center>
 <br>
 Dicetak :'.date('l, d-m-Y');
 if(mysqli_num_rows($perintahQuery) < 7){
@@ -58,10 +58,12 @@ $html.=
   $i++;
   };
   $html .='
-</table>
-<img width="100" src="<?= BASE_URL?>asset/img/ttd.jpg" style="margin-left:80%; margin-top:5%"><h5 style="margin-left:75%">Admin Rumah Laundry 381</h5>
-</body>
-</html>
+  </table>
+  <p style="margin-left:70%; margin-top:5%">Palembang,';
+  
+  $html .= date(' d-m-Y').'</p><h5 style="margin-left:76%">Admin RL381</h5>
+  </body>
+  </html>
 ';
 
  

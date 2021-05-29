@@ -10,7 +10,7 @@ $html = '
 <html lang="en">
 <?php require "template/header.php";?>
 <body id="page-top">
-<center> <h1>Laporan Rumah Laundry Seluruh Data</h1></center>
+<center> <h1>Laporan Rumah Laundry 381 Seluruh Data</h1></center>
 <br>
 Dicetak :'.date('l, d-m-Y');
 if(mysqli_num_rows($perintahQuery) > 1){
