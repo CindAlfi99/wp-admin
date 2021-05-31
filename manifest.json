@@ -1,0 +1,21 @@
+{
+	"short_name": "RL381-adm",
+	"name": "Admin RL381",
+	"icons": [
+		{
+			"src": "asset/img/rl381-adm.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "asset/img/rl381-adm-bg.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "/",
+	"background_color": "#80B4FB",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#80B4FB"
+}
