@@ -1,36 +1,55 @@
 
 
+
+
 <!doctype html>
 <html lang="en">
 <?php require 'template/header.php';?>
 <body id="page-top">
 <?php require 'template/navbar.php';?>
 <div class="container scroll">
-<?php require 'template/header.php';?>
-<div class="container scroll">
-<!-- search -->
-<div class="row">
 <?php require 'template/header.php';
 require 'functions.php';
-// data seluruh konsumen yang belum selesai
+// data hari ini
 $query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian != 'antar' OR status_cucian != 'diambil'");
 //data di layanan
 $data = mysqli_query($connection,"SELECT * FROM layanan");
-
+// data update
 if(isset($_POST['ubah'])){
+ 
   if(ubahProduk($_POST) > 0){
-    $alert_ubah = true;
+    echo "<script>alert('data konsumen berhasil diubah');
+    window.location.href ='all_customer.php'; </script>";
+    // $alert_ubah = true;
   }else{
-$alert_gagal = true;
+    echo "<script>alert('data gagal diubah');
+    window.location.href ='all_customer.php'; </script>";
  
   }
 }
+
+// if (isset($_POST['tampil'])) {
+//   $value = $_POST['show'];
+//   $perintahQuery = "SELECT * FROM order_masuk LIMIT $value";
+//   $query = mysqli_query($connection, $perintahQuery);
+// }
+
+
+
+if(isset($_POST['tambah'])){
+
+    echo "<script> alert('Data berhasil ditambah');
+    document.location.href ='customer.php'; </script>";
+}
+
 ?>
+<!-- search -->
+<div class="row">
 <div class="col-md-5">
 <!-- alert simpan -->
 <div class="alert alert-success alert-dismissible fade" role="alert">
   <strong>Berhasil disimpan!</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="return window.location.href='customer.php'">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -54,20 +73,28 @@ $alert_gagal = true;
 <?php endif?>
 <!-- alert end -->
 
+
+
 <!-- <div class="form-group mb-2">
     <input type="text" class="form-control" id="cari_customer" placeholder="cari.." autofocus autocomplete="off">
   </div> -->
 </div></div>
 <div class="row">
+  <div class="col-md-12">
+   
+  </div> 
 <div class="col-md-12 text-right"><button type="button text-right" class="btn btn-primary" data-toggle="modal" data-target="#modalTambah">
   Tambah data
 </button></div>
-<div class="col-md-12 text-right"><a href="#" onclick="window.location.reload();"> Segarkan Halaman </a></div></div>
+<!-- <div class="col-md-12 text-right"><a href="#" onclick="window.location.reload();"> Segarkan Halaman </a></div> -->
+</div>
 <div class="row">
-<h5 class="ml-3 mb-3">Semua konsumen yg sedang di proses</h5>
+<h5 class="ml-3 mb-3">Data Konsumen Hari Ini</h5>
 <div class="col-md-12">
+
 <div class="containe" id="containers">
-<table class="table table-striped text-center" id="cust">
+
+<table id="example" class="text-center">
   <thead>
     <tr>
       <th scope="col">No</th>
@@ -86,10 +113,11 @@ $alert_gagal = true;
     </tr>
    
   </thead>
-  <tbody>
+  <tbody id="hy">
   <?php
+
   $i = 1;
-   while($row = mysqli_fetch_assoc($query)):?>
+   foreach($query as $row):?>
     <tr>
       <th scope="row"><?= $i++;?></th>
       <td><?=$row['nama_pemesan'];?></td>
@@ -107,12 +135,15 @@ $alert_gagal = true;
       <a class="btn btn-danger" href="hapus.php?id=<?= $row['id_order'];?>" onclick="return confirm('Confirm');">Hapus</a>
       <a class="btn btn-info" href="nota_sementara.php?no_resi=<?= $row['no_resi'];?>">Cetak</a>
       </th>
-      <?php endwhile;?>
+      
     </tr>
-  
+    <?php endforeach;?>
+   
   </tbody>
 </table>
+
 </div>
+
 
 </div>
 </div>
@@ -241,12 +272,14 @@ $alert_gagal = true;
           </div>
         </div>
 
-        <input type="submit"  value="Order Sekarang" class="btn btn-primary">
+        <input type="submit" name="tambah" value="Order Sekarang" class="btn btn-primary">
       </form>
     
       </div>
     </div>
   </div>
+
+
  
 
 <!-- modal tambah -->

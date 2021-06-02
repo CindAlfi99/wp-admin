@@ -3,8 +3,8 @@ require 'config/DB.php';
 
 
 
-$id= $_GET["id"];
-if(hapus($id)>0){
+if(isset($id= $_GET["id"]){
+if(hapus($id)){
     echo "<script>alert('data berhasil dihapus!');
     document.location.href='customer.php';</script>";
 }else{
@@ -17,4 +17,5 @@ function hapus($id){
     global $connection;
 mysqli_query($connection, "DELETE FROM order_masuk WHERE id_order=$id");
 return mysqli_affected_rows($connection);
+}
 }

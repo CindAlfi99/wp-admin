@@ -368,3 +368,4 @@ if(isset($_POST['tambah'])){
  <?php require 'template/footer.php';?>
  </body>
 </html>
+

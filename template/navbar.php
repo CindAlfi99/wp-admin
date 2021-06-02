@@ -1,7 +1,7 @@
 <?php require 'config/base_url.php';
 require 'config/DB.php';
 session_start();
-$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian='jemput'");
+$query = mysqli_query($connection, "SELECT * FROM order_masuk WHERE status_cucian='jemput' AND mode='online'");
 $querys = mysqli_query($connection, "SELECT * FROM users");
 $user = mysqli_fetch_assoc($querys);
 $count = mysqli_num_rows($query);

@@ -1,7 +1,13 @@
 
- 
 
-
+<?php session_start();
+//jika variabel terpanggil
+if(!isset($_SESSION['role'])){
+    //jika tidak 
+header("Location: index.php"); //kembalikan ke halaman login.php
+exit;
+}
+?>
 <!doctype html>
 <html lang="en">
 <?php require 'template/header.php';?>
