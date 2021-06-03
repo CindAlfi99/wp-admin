@@ -3,7 +3,7 @@ self.addEventListener("install", function(event) {
 		caches.open("pwa").then(function(cache) {
 			return cache.addAll([
 				"/",
-				"/asset/css/notif.css",
+				"/asset/css/sb-admin-2.css",
 				"/asset/css/bootstrap.min.css",
 				"/asset/js/sb-admin-2.js",
 				"/asset/js/order.js",
